@@ -96,6 +96,7 @@
     <Compile Include="OldForm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\Announcer.cs" />
     <Compile Include="Utility\AnnounceStruct.cs" />
     <Compile Include="Utility\Cheats.cs" />
     <Compile Include="Utility\ColorExtensions.cs" />

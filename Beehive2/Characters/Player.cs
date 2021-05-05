@@ -117,7 +117,7 @@ namespace Beehive2
 
 			if (horny > 15) // having fun
 			{
-				Refs.mf.Announce("Awwww yeah! *splurt*", myAlign, myColor);
+				Announcer.Announce("Awwww yeah! *splurt*", myAlign, myColor);
 				timepass += 5;
 				MainMap.SplurtNectar(here, myIndex: 0);
 				horny = 0;
@@ -143,7 +143,7 @@ namespace Beehive2
 				if (jails.Count == Refs.m.pents.Count)
 				{
 					victory = true;
-					Refs.mf.Announce("Gotcha all! And in only " + turnCounter + " turns!", myAlign, myColor);
+					Announcer.Announce("Gotcha all! And in only " + turnCounter + " turns!", myAlign, myColor);
 				}
 			}
 
@@ -161,19 +161,19 @@ namespace Beehive2
 		{
 			placemode = false;
 			throwmode = false;
-			Refs.mf.Announce("Never mind! Back to the chase!", myAlign, myColor);
+			Announcer.Announce("Never mind! Back to the chase!", myAlign, myColor);
 		}
 
 		private void SetPlaceMode()
 		{
 			placemode = true;
-			Refs.mf.Announce("Place/pickup where? (esc to cancel)", myAlign, myColor);
+			Announcer.Announce("Place/pickup where? (esc to cancel)", myAlign, myColor);
 		}
 
 		private void SetThrowMode()
 		{
 			throwmode = true;
-			Refs.mf.Announce("Throw which way? (esc to cancel)", myAlign, myColor);
+			Announcer.Announce("Throw which way? (esc to cancel)", myAlign, myColor);
 		}
 
 		public void UpdateInventory()

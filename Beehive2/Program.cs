@@ -33,7 +33,7 @@ namespace Beehive2
 			Shown();
 		}
 
-		private static Shown()
+		private static void Shown()
 		{
 			// generate map
 			Refs.p = new Player("The Protagonist", Color.Cyan);
@@ -62,6 +62,12 @@ namespace Beehive2
 			Announce("Chase me Master! *hehe*", c.myAlign, c.myColor);
 
 			Refs.p.UpdateInventory();
+		}
+
+		public static void UpdateMap()
+		{
+			// TODO Refs.mf.MainBitmap.Image = Refs.m.AsBitmap();
+			// TODO Refs.mf.Refresh();
 		}
 
 		private static void HelpPopup()
@@ -103,31 +109,9 @@ namespace Beehive2
 			//MessageBox.Show(m1b + "\n" + m2b);
 		}
 
-		internal void Announce(string say, string align, Color col)
+		public static void Announce(string say, string align, Color col)
 		{
-			try
-			{
-				if (annLines == null) annLines = new List<AnnounceStruct>();
-
-				annLines.Add(new AnnounceStruct(say, align, col));
-				if (annLines.Count > 11) annLines.RemoveAt(0);
-
-				//feedbackBox.Text = "";
-				feedbackBox.Clear();
-
-				int max = annLines.Count;
-				for (int i = 0; i < max; i++)
-				{
-					feedbackBox.FancyAppendText(annLines[i].say + "\n",
-						annLines[i].color, annLines[i].align);
-				}
-				Refresh();
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine("Caught exception in Announce(), " + ex.ToString() +
-					" with message " + ex.Message);
-			}
+			// TODO implement announce system
 		}
 
 		private static void Console_MouseMove(object sender, SadConsole.Input.MouseEventArgs e)

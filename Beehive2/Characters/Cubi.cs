@@ -90,7 +90,7 @@ namespace Beehive2
 				if (c != this && c.OnPent() && Loc.Distance(loc, c.loc) < 1.5)
 				{
 					c.FreeMoveToNearbySafeSquare();
-					Refs.mf.Announce(c.name + ", you're free, sweetie! Run!", myAlign, myColor);
+					Announcer.Announce(c.name + ", you're free, sweetie! Run!", myAlign, myColor);
 
 					// note they can do this even while being carried... leaving it in for comedy.
 				}
@@ -126,7 +126,7 @@ namespace Beehive2
 				spankNoMove = true; // too oww to move.
 				if (Spanked == 0)
 				{
-					Refs.mf.Announce("That was intense... but time to get going again!", myAlign, myColor);
+					Announcer.Announce("That was intense... but time to get going again!", myAlign, myColor);
 				}
 			}
 
@@ -167,14 +167,14 @@ namespace Beehive2
 				// consume player nectar
 				if (here.nectarLevel[0] > 0) // level [0] for player nectar
 				{
-					Refs.mf.Announce("Yes, masters nectar! *lap lap*", myAlign, myColor);
+					Announcer.Announce("Yes, masters nectar! *lap lap*", myAlign, myColor);
 					horny += here.nectarLevel[0] * 5;
 					here.nectarLevel[0] = 0;
 				}
 
 				if (horny > 15) // having fun
 				{
-					Refs.mf.Announce("Aieee I'm cumming! *splurt*", myAlign, myColor);
+					Announcer.Announce("Aieee I'm cumming! *splurt*", myAlign, myColor);
 					MainMap.SplurtNectar(here, myIdNo);
 					Spanked += 5;
 					horny = 0;
