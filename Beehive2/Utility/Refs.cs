@@ -6,5 +6,6 @@
 		public static Player p;
 		public static Harem h;
 		public static MainMap m;
+		public static Main main;
 	}
 }

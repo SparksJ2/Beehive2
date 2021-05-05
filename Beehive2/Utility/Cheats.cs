@@ -12,7 +12,7 @@ namespace Beehive2
 		{
 			Announcer.Announce("Cheat: clearing nectar...", Refs.p.myAlign, Refs.p.myColor);
 			Refs.m.ClearNectar();
-			Refs.mf.UpdateMap();
+			Refs.main.UpdateMap();
 		}
 
 		public static void TopOffEnergy()

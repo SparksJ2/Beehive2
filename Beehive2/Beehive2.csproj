@@ -85,6 +85,7 @@
     <Compile Include="Area\Tiles\MapTile.cs" />
     <Compile Include="Area\Tiles\MapTileComp.cs" />
     <Compile Include="Area\Tiles\MapTileSet.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Characters\Cubi.cs" />
     <Compile Include="Characters\CubiAi.cs" />
     <Compile Include="Characters\Harem.cs" />
@@ -92,8 +93,8 @@
     <Compile Include="Characters\Player.cs" />
     <Compile Include="Input\MyKeyboardComponent.cs" />
     <Compile Include="Input\MyMouseComponent.cs" />
-    <Compile Include="MapScreen.cs" />
-    <Compile Include="OldForm.cs" />
+    <Compile Include="Old\MapScreen.cs" />
+    <Compile Include="Old\OldForm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Announcer.cs" />

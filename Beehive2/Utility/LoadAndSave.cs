@@ -61,7 +61,7 @@ namespace Beehive2
 			}
 
 			Refs.p.UpdateInventory();
-			Refs.mf.UpdateMap();
+			Refs.main.UpdateMap();
 
 			Announcer.Announce("Loaded game at " + Refs.p.turnCounter + " turns in.", Refs.p.myAlign, Refs.p.myColor);
 		}

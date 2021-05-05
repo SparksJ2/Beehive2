@@ -44,7 +44,7 @@ namespace Beehive2
 
 				if (timePass == 0)
 				{
-					UpdateMap();
+					Refs.main.UpdateMap();
 					Console.WriteLine("Finished UpdateMap at " + sw.ElapsedMilliseconds + "ms in.");
 				}
 				else
@@ -56,7 +56,7 @@ namespace Beehive2
 						Console.WriteLine("Finished AiMove at " + sw.ElapsedMilliseconds + "ms in.");
 
 						Refs.m.SpreadNectar();
-						UpdateMap();
+						Refs.main.UpdateMap();
 						Thread.Sleep(75);
 
 						Console.WriteLine("Finished UpdateMap at " + sw.ElapsedMilliseconds + "ms in.");
@@ -78,10 +78,6 @@ namespace Beehive2
 			handled = true;
 		}
 
-		public void UpdateMap()
-		{
-			// TODO Refs.mf.MainBitmap.Image = Refs.m.AsBitmap();
-			// TODO Refs.mf.Refresh();
-		}
+	 
 	}
 }
