@@ -178,9 +178,10 @@ namespace Beehive2
 
 		public void UpdateInventory()
 		{
-			Refs.mf.miniInventory.Text =
-				"pillows: " + heldPillows + "\n" +
-				"succubi: " + (heldCubiId == 0 ? 0 : 1);
+			// TODO inventory
+			///Refs.mf.miniInventory.Text =
+				//"pillows: " + heldPillows + "\n" +
+				//"succubi: " + (heldCubiId == 0 ? 0 : 1);
 		}
 
 		private void RunNorth()
