@@ -1,0 +1,100 @@
+﻿
+issues:
+````````
+'cubi id != their place in the roster, leading to off-by-one problems
+
+todo list:
+```````````
+
+clear up load/save hotkeys
+
+cheat: add cheat menu
+cheat: clear all nectar.
+cheat: override FOV to see all map.
+
+gfx: better interpolation? of color x on y background
+gfx: now we have better anti-aliasing add coloured halo using AA tweaked background colour?
+
+bug report: arrow keys can lose main window focus?
+	``Interesting. Somehow hitting ← got me into one of the display-text-boxes, and now I can't control the interface anymore``
+	``Mono probably has a bug around this. I noticed intermittent weirdness around the feedback box last time I ran (won't build right now, will debug later) that I couldn't make clear enough to give you a bug report about.``
+	misfeature: do something with ctrl/shift key chording?
+
+random chase questions:
+	can BE detect pet via any 6th sense? Probably
+	can pet be tracked around corners by her glow? Yes
+	can pet dynamic entry if she gets excited enough? Not sure what gameplay implications would be here.
+
+fix dodgy animation coding
+	(throwing has glitches when going over holding pens,
+	also needs to redraw player char after throw release)
+	needs work/overhaul overall
+
+other comments
+	'...though she has the tendency to blunder back in and be caught again.' - 'yeah, that needs an 'oops' message.'
+
+	'it should be possible to pillow-spank her into the bed' - 'I agree, added to todos list.
+	add one-space displace when pillowspanked?
+	todo: unbugger throw/hit code
+
+display stuff
+	interface
+		fix inventory (mis-count! shows holding 2 cubi?)
+			add color & cubi name
+		add menus
+			f1 help
+			load/save
+			options?
+	line of sight stuff
+	unified background drawing?
+		add glow!
+			for mobiles
+			for 'beds'
+
+naming
+	think of a better name than beehive
+
+cubi AI 
+	jumping over player
+	vary target distance
+
+controls
+	navigation via mouse clicks
+
+kinky stuff
+	victory facesitting move? :D
+	add 'puppet strings' to pull cubi towards you
+	pacman nectar drops for powerup?
+	more & better sexy lines / descriptions for feedback box
+	slippery when wet: "oops... your lover escapes your grip, keep trying!"
+	Cubi may try to escape when spanked overmuch.
+	leash / nethack-esque ball and chain?
+	portable tentacle pit?
+	whip-to-trip
+
+plus other todos (see IDE task list window)
+
+low priority:
+``````````````
+config file settings
+weight allowance
+2 player mode
+learn javascript, lol
+find a RichTextBox substitute if possible
+
+further notes
+``````````````
+the current lust cycle is: player chases 'cubi > 'cubi gets horny > 'cubi leaks nectar >
+player touching nectar consumes it > player gets horny > player spontaneous orgasm >
+player leaks nectar > 'cubi paths to player nectar > 'cubi touching nectar consumes it >
+'cubi gets more horny > 'cubi spontaneous orgasm > 'cubi nectar leaks > (etc...)
+
+tease theory
+`````````````
+while player is distant or not closing in 'cubi bored++
+when subtract bored from target distance to player
+when too close, spook, set bored = 0 and set target distance far again
+
+for reference
+`````````````
+amusing bug: pillow-dodging frees ms. 'cubi from the bed' - 'motivation!'

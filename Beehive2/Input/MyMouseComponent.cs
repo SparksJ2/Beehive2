@@ -8,8 +8,10 @@ namespace Beehive2
 	{
 		public override void ProcessMouse(SadConsole.Console console, MouseConsoleState state, out bool handled)
 		{
-			if (state.IsOnConsole)
-				console.SetBackground(state.CellPosition.X, state.CellPosition.Y, Color.White.GetRandomColor(SadConsole.Global.Random));
+			//if (state.IsOnConsole)
+			//	console.SetBackground(
+			//	state.CellPosition.X, state.CellPosition.Y,
+			//	Color.White.GetRandomColor(SadConsole.Global.Random));
 
 			handled = false;
 		}

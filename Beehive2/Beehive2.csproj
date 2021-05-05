@@ -10,10 +10,11 @@
     <AssemblyName>Beehive2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,11 +59,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\Boink.cs" />
+    <Compile Include="Actions\Cane.cs" />
+    <Compile Include="Actions\Place.cs" />
+    <Compile Include="Actions\Throw.cs" />
+    <Compile Include="Actions\ThrowCubi.cs" />
+    <Compile Include="Actions\ThrowPillow.cs" />
+    <Compile Include="Area\Generate\MapGenerator.cs" />
+    <Compile Include="Area\Generate\MapGenUtils.cs" />
+    <Compile Include="Area\Maps\BaseMap.cs" />
+    <Compile Include="Area\Maps\FlowMap.cs" />
+    <Compile Include="Area\Maps\MainMap.cs" />
+    <Compile Include="Area\Maps\MainMapLos.cs" />
+    <Compile Include="Area\Render\ColourUtils.cs" />
+    <Compile Include="Area\Render\FrameData.cs" />
+    <Compile Include="Area\Render\MapDraw.cs" />
+    <Compile Include="Area\Render\TileDraw.cs" />
+    <Compile Include="Area\Tiles\BaseTile.cs" />
+    <Compile Include="Area\Tiles\ConvertTiles.cs" />
+    <Compile Include="Area\Tiles\Dir.cs" />
+    <Compile Include="Area\Tiles\FlowTile.cs" />
+    <Compile Include="Area\Tiles\FlowTileComp.cs" />
+    <Compile Include="Area\Tiles\FlowTileSet.cs" />
+    <Compile Include="Area\Tiles\Loc.cs" />
+    <Compile Include="Area\Tiles\MapTile.cs" />
+    <Compile Include="Area\Tiles\MapTileComp.cs" />
+    <Compile Include="Area\Tiles\MapTileSet.cs" />
+    <Compile Include="Characters\Cubi.cs" />
+    <Compile Include="Characters\CubiAi.cs" />
+    <Compile Include="Characters\Harem.cs" />
+    <Compile Include="Characters\Mobile.cs" />
+    <Compile Include="Characters\Player.cs" />
     <Compile Include="Input\MyKeyboardComponent.cs" />
     <Compile Include="Input\MyMouseComponent.cs" />
     <Compile Include="MapScreen.cs" />
+    <Compile Include="OldForm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\AnnounceStruct.cs" />
+    <Compile Include="Utility\Cheats.cs" />
+    <Compile Include="Utility\ColorExtensions.cs" />
+    <Compile Include="Utility\Grimoire.cs" />
+    <Compile Include="Utility\HashSetExt.cs" />
+    <Compile Include="Utility\LoadAndSave.cs" />
+    <Compile Include="Utility\Refs.cs" />
+    <Compile Include="Utility\RichTextBoxExtensions.cs" />
+    <Compile Include="Utility\VisAI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -69,7 +112,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENCE.txt" />
+    <Content Include="Notes\nectar.txt" />
+    <Content Include="Notes\notes.txt" />
+    <Content Include="Notes\personality.txt" />
+    <Content Include="Notes\references.txt" />
+    <Content Include="Notes\todo.txt" />
+    <Content Include="Notes\walls.txt" />
+    <Content Include="Notes\workspace.txt" />
+    <Content Include="Notes\zodiac.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets" Condition="Exists('..\packages\MonoGame.Framework.DesktopGL.3.8.0.1641\build\MonoGame.Framework.DesktopGL.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
