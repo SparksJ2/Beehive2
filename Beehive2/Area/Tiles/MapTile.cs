@@ -11,8 +11,9 @@ namespace Beehive2
 	{
 		public bool clear = false;
 		public string gly = "#";
+		public char asc = (char)168;
 		public bool los = false;
-		public Color backCol = Color.DarkSlateBlue;
+		public Color backCol = Color.DarkBlue;
 
 		public int[] nectarLevel; // 0 is for master, cubis start as 1 (same as flows)
 

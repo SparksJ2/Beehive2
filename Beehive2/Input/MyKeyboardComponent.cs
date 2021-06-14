@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Xna.Framework;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 namespace Beehive2
 {
@@ -19,13 +20,24 @@ namespace Beehive2
 
 		public override void ProcessKeyboard(SadConsole.Console console, Keyboard info, out bool handled)
 		{
+			info.InitialRepeatDelay = 300; // todo currently repeat is broken
+			info.RepeatDelay = 50;
+
 			if (info.KeysPressed.Count == 0) // only interested in keypresses
 			{
 				handled = true;
 				return;
 			}
 
-			betweenTurnsTimer = new Stopwatch();
+			if (info.IsKeyPressed(Keys.LeftShift) || info.IsKeyPressed(Keys.RightShift) ||
+				info.IsKeyPressed(Keys.LeftControl) || info.IsKeyPressed(Keys.RightControl))
+				// don't trigger on just modifier keys
+			{
+				handled = true;
+				return;
+			}
+
+				betweenTurnsTimer = new Stopwatch();
 
 			var sw = new Stopwatch(); sw.Start();
 
@@ -36,7 +48,7 @@ namespace Beehive2
 			try
 			{
 				// TODO use proper repeat delays in Keyboard info
-				if (betweenTurnsTimer.ElapsedMilliseconds < 300) { handled = true; return; }
+				//if (betweenTurnsTimer.ElapsedMilliseconds < 300) { handled = true; return; }
 
 				betweenTurnsTimer.Start();
 
@@ -44,8 +56,8 @@ namespace Beehive2
 
 				Refs.m.HealWalls();
 				Console.WriteLine("Finished HealWalls at " + sw.ElapsedMilliseconds + "ms in.");
-				//Refs.m.RunLos();
-				//Console.WriteLine("Finished RunLos at " + sw.ElapsedMilliseconds + "ms in.");
+				Refs.m.RunLos();
+				Console.WriteLine("Finished RunLos at " + sw.ElapsedMilliseconds + "ms in.");
 
 				FlowMap.RemakeAllFlows();
 				Console.WriteLine("Finished RemakeAllFlows at " + sw.ElapsedMilliseconds + "ms in.");

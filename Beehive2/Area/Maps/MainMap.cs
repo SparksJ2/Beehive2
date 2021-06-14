@@ -101,25 +101,25 @@ namespace Beehive2
 				// ├─┼┤  ╠═╬╣  ╟─╫╢  ╞═╪╡
 				// └─┴┘  ╚═╩╝  ╙─╨╜  ╘═╧╛
 
-				if (n && s && e && w) t.gly = "╬";
+				if (n && s && e && w) { t.gly = "╬"; t.asc = (char)206; }
 
-				if (!n && s && e && w) t.gly = "╦";
-				if (n && !s && e && w) t.gly = "╩";
-				if (n && s && !e && w) t.gly = "╣";
-				if (n && s && e && !w) t.gly = "╠";
+				if (!n && s && e && w) { t.gly = "╦"; t.asc = (char)203; }
+				if (n && !s && e && w) { t.gly = "╩"; t.asc = (char)202; }
+				if (n && s && !e && w) { t.gly = "╣"; t.asc = (char)185; }
+				if (n && s && e && !w) { t.gly = "╠"; t.asc = (char)204; }
 
-				if (n && s && !e && !w) t.gly = "║";
-				if (!n && !s && e && w) t.gly = "═";
+				if (n && s && !e && !w) { t.gly = "║"; t.asc = (char)186; }
+				if (!n && !s && e && w) { t.gly = "═"; t.asc = (char)205; }
 
-				if (!n && s && e && !w) t.gly = "╔";
-				if (!n && s && !e && w) t.gly = "╗";
-				if (n && !s && !e && w) t.gly = "╝";
-				if (n && !s && e && !w) t.gly = "╚";
+				if (!n && s && e && !w) { t.gly = "╔"; t.asc = (char)201; }
+				if (!n && s && !e && w) { t.gly = "╗"; t.asc = (char)187; }
+				if (n && !s && !e && w) { t.gly = "╝"; t.asc = (char)188; }
+				if (n && !s && e && !w) { t.gly = "╚"; t.asc = (char)200; }
 
-				if (!n && s && !e && !w) t.gly = "║";
-				if (n && !s && !e && !w) t.gly = "║";
-				if (!n && !s && e && !w) t.gly = "═";
-				if (!n && !s && !e && w) t.gly = "═";
+				if (!n && s && !e && !w) { t.gly = "║"; t.asc = (char)186; }
+				if (n && !s && !e && !w) { t.gly = "║"; t.asc = (char)186; }
+				if (!n && !s && e && !w) { t.gly = "═"; t.asc = (char)205; }
+				if (!n && !s && !e && w) { t.gly = "═"; t.asc = (char)205; }
 
 				//if (!n && s && !e && !w) t.gly = "╥";
 				//if (n && !s && !e && !w) t.gly = "╨";
@@ -127,7 +127,7 @@ namespace Beehive2
 				//if (!n && !s && !e && w) t.gly = "╡";
 
 				//if (!n && !s && !e && !w) t.gly = "╳";
-				if (!n && !s && !e && !w) t.gly = "X";
+				if (!n && !s && !e && !w) { t.gly = "X"; t.asc = (char)48; }
 			}
 		} // end healwalls
 

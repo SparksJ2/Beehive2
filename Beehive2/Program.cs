@@ -29,11 +29,21 @@ namespace Beehive2
 
 		private static void Init()
 		{
+			FontMaster fm = Global.LoadFont("fonts/Cheepicus12.font");
+			//FontMaster fm = Global.LoadFont("fonts/mdcurses16.font");
+			Font cheep = fm.GetFont(Font.FontSizes.One);
+
 			var console = new Console(70, 50);
+			console.Font = cheep;
+
+			// fix size after font change
+			cheep.ResizeGraphicsDeviceManager(SadConsole.Global.GraphicsDeviceManager, 70, 50, 5, 5);
+			Global.ResetRendering();
+
 			Refs.con = console;
 
 			console.IsFocused = true;
-			console.Cursor.IsVisible = true;
+			console.Cursor.IsVisible = false;
 			console.Components.Add(new MyKeyboardComponent());
 
 			console.FillWithRandomGarbage();

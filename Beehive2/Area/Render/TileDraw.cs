@@ -54,12 +54,7 @@ namespace Beehive2
 			else // it's not marked as clear, so draw the wall
 
 			{
-				foreach (byte b in System.Text.Encoding.UTF8.GetBytes(t.gly.ToCharArray()))
-				{
-					OldConsole.WriteLine("Rendering Foreground char " + b.ToString() + "...");
-				}
-
-				con.Print(t.loc.X, t.loc.Y, t.gly, Color.White, t.backCol);
+				con.Print(t.loc.X, t.loc.Y, t.asc.ToString(), Color.White, Color.DarkBlue);
 			}
 		}
 
@@ -128,24 +123,18 @@ namespace Beehive2
 			}
 		}
 
-		public static void AddCharMobile(Mobile m)
+		public static void AddCharMobile(Console con, Mobile m)
 		{
 			// description for rewrite:
 			//  add player as '♂' char and cubi as '☿' char
 			string s = m.glyph;
 
 			// begin foreground
-			if ((s == "♂" || s == "☿") && Refs.m.TileByLoc(m.loc).los)
+			if ((s == "♂" || s == "☿")) // && Refs.m.TileByLoc(m.loc).los)
 			{
-				// rm Bitmap singleTileImage = SpriteManager.GetSprite(s, Refs.m.stdSize, m.myColor, Refs.m.TileByLoc(m.loc).backCol);
 
-				// paste symbol onto map
-				// rm using (var gChar = Graphics.FromImage(img))
-				// rm {
-				// rm int x1 = (m.loc.X * FrameData.multX) + FrameData.edgeX;
-				// rm int y1 = (m.loc.Y * FrameData.multY) + FrameData.edgeY;
-				// rm gChar.DrawImage(singleTileImage, x1, y1);
-				// rm }
+				if (s == "♂") { con.Print( m.loc.X, m.loc.Y, ((char)11).ToString(), m.myColor); }
+				if (s == "☿") { con.Print(m.loc.X, m.loc.Y, ((char)12).ToString(), m.myColor); }
 			}
 		}
 	}

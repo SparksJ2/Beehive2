@@ -12,30 +12,26 @@ namespace Beehive2
 
 		public void RenderMapAll() // rm used to return Bitmap
 		{
-			Console newCon = new Console(70, 50);
+			Console con = Refs.con;
 
 			// clear the canvas to dark
-			newCon.DefaultBackground = Color.Black;
-			newCon.Clear();
+			con.DefaultBackground = Color.Black;
+			con.Clear();
 
 			// do all backgrounds here (includes flow, los, glow effects)
 			Refs.m.RunLos();
 			Refs.m.RunGlows();
-			foreach (MapTile t in tiles) { TileDraw.AddBackgroundStuff(newCon, t); }
+			foreach (MapTile t in tiles) { TileDraw.AddBackgroundStuff(con, t); }
 
 			// add walls, nectar
-			foreach (MapTile t in tiles) { TileDraw.AddForegroundStuff(newCon, t); }
+			foreach (MapTile t in tiles) { TileDraw.AddForegroundStuff(con, t); }
 
 			// add specials
 			// rm TileDraw.AddCharSpecial(bmp, "⛤");
 
 			// add mobiles (player and harem)
-			// rm TileDraw.AddCharMobile(bmp, Refs.p);
-			foreach (Cubi c in Refs.h.roster) { TileDraw.AddCharMobile(c); }
-
-			// flip to new console object
-			Refs.con = newCon;
-			Global.CurrentScreen = Refs.con;
+			TileDraw.AddCharMobile(con, Refs.p);
+			foreach (Cubi c in Refs.h.roster) { TileDraw.AddCharMobile(con,c); }
 		}
 
 		// point update for animations
