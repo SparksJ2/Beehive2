@@ -12,7 +12,7 @@ namespace Beehive2
 	{
 		public static void SaveGame()
 		{
-			Announcer.Announce("Saving game...", Refs.p.myAlign, Refs.p.myColor);
+			Announcer.Say("Saving game...", Refs.p.myAlign, Refs.p.myColor);
 			Stream TestFileStream = File.Create("map.bin");
 			BinaryFormatter serializer = new BinaryFormatter();
 			serializer.Serialize(TestFileStream, Refs.m);
@@ -31,7 +31,7 @@ namespace Beehive2
 
 		public static void LoadGame()
 		{
-			Announcer.Announce("Loading game...", Refs.p.myAlign, Refs.p.myColor);
+			Announcer.Say("Loading game...", Refs.p.myAlign, Refs.p.myColor);
 
 			string FileName = "map.bin";
 			if (File.Exists(FileName))
@@ -61,9 +61,9 @@ namespace Beehive2
 			}
 
 			Refs.p.UpdateInventory();
-			Refs.main.UpdateMap();
+			Refs.m.RenderMapAll();
 
-			Announcer.Announce("Loaded game at " + Refs.p.turnCounter + " turns in.", Refs.p.myAlign, Refs.p.myColor);
+			Announcer.Say("Loaded game at " + Refs.p.turnCounter + " turns in.", Refs.p.myAlign, Refs.p.myColor);
 		}
 	}
 }

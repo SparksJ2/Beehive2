@@ -12,7 +12,7 @@ namespace Beehive2
 		public static void VisFlowFromMenuBar(int pick)
 		{
 			Refs.p.viewFlow = pick;
-			Refs.mf.UpdateMap();
+			Refs.m.RenderMapAll();
 		}
 	}
 }

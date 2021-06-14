@@ -8,7 +8,7 @@ namespace Beehive2
 
 		private void ThrowPillowMain(Loc vector)
 		{
-			Refs.mf.Announce("You throw a pillow!", myAlign, myColor);
+			Announcer.Say("You throw a pillow!", myAlign, myColor);
 
 			// can't throw without pillow!
 			if (heldPillows <= 0)
@@ -30,9 +30,9 @@ namespace Beehive2
 				MapTile victimTile = Refs.m.TileByLoc(Loc.AddPts(activeTile.loc, vector));
 				Cubi victim = Refs.m.CubiAt(victimTile.loc);
 
-				Refs.mf.Announce("POINT BLANK PILLOW SPANK!", myAlign, myColor);
+				Announcer.Say("POINT BLANK PILLOW SPANK!", myAlign, myColor);
 				victim.Spanked += 5;
-				Refs.mf.Announce("oww! *moan*", victim.myAlign, victim.myColor);
+				Announcer.Say("oww! *moan*", victim.myAlign, victim.myColor);
 			}
 
 			while (moveClear == "clear")
@@ -57,19 +57,19 @@ namespace Beehive2
 					if (escapes.Count > 0)
 					{
 						victim.loc = MainMap.RandomFromList(escapes).loc;
-						Refs.mf.Announce("Nyahhh missed me!", victim.myAlign, victim.myColor);
+						Announcer.Say("Nyahhh missed me!", victim.myAlign, victim.myColor);
 						moveClear = "clear";
 					}
 					else
 					{
 						victim.Spanked += 5;
-						Refs.mf.Announce("Owwwww!", victim.myAlign, victim.myColor);
+						Announcer.Say("Owwwww!", victim.myAlign, victim.myColor);
 					}
 				}
 
 				// just a wall. stop here.
 				if (moveClear == "wall")
-				{ Refs.mf.Announce("You didn't hit anything interesting.", myAlign, myColor); }
+				{ Announcer.Say("You didn't hit anything interesting.", myAlign, myColor); }
 
 				// it's clear, so move activeTile up and iterate
 				if (moveClear == "clear")
@@ -79,7 +79,7 @@ namespace Beehive2
 			activeTile.clear = false;
 			Refs.m.HealWalls();
 
-			Refs.mf.UpdateMap();
+			Refs.m.RenderMapAll();
 		}
 
 		private void AnimatePillow(MapTile activeTile, string glyph)
@@ -88,13 +88,13 @@ namespace Beehive2
 			activeTile.clear = false;
 			activeTile.gly = glyph;
 
-			Refs.mf.UpdateMap();
+			Refs.m.RenderMapAll();
 
 			Thread.Sleep(75);
 			activeTile.clear = true;
 			activeTile.gly = " ";
 
-			Refs.mf.UpdateMap();
+			Refs.m.RenderMapAll();
 			// todo also fix nectar drops.
 		}
 	}

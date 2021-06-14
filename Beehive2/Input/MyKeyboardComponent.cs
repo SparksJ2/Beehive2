@@ -10,41 +10,49 @@ namespace Beehive2
 {
 	internal class MyKeyboardComponent : KeyboardConsoleComponent
 	{
-		public Stopwatch turnTimer;
+		public Stopwatch betweenTurnsTimer;
+
+		public MyKeyboardComponent()
+		{
+			int i = 1; // for checkpoint
+		}
 
 		public override void ProcessKeyboard(SadConsole.Console console, Keyboard info, out bool handled)
 		{
-			//if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Space))
-			//{
-			//	console.DefaultBackground = Color.White.GetRandomColor(SadConsole.Global.Random);
-			//	console.Clear();
-			//}
+			if (info.KeysPressed.Count == 0) // only interested in keypresses
+			{
+				handled = true;
+				return;
+			}
+
+			betweenTurnsTimer = new Stopwatch();
 
 			var sw = new Stopwatch(); sw.Start();
 
 			// TODO only report first key potential for issues here
-			Console.WriteLine("Key " + info.KeysPressed[0] + " Pressed");
+			Console.WriteLine("Key " + info.KeysDown[0].Key + " Pressed");
 			Console.WriteLine("Starting new frame.");
+
 			try
 			{
 				// TODO use proper repeat delays in Keyboard info
-				if (turnTimer.ElapsedMilliseconds < 300) { handled = true; return; }
+				if (betweenTurnsTimer.ElapsedMilliseconds < 300) { handled = true; return; }
 
-				turnTimer.Start();
+				betweenTurnsTimer.Start();
 
 				int timePass = Refs.p.HandlePlayerInput(console, info, out handled);
 
 				Refs.m.HealWalls();
 				Console.WriteLine("Finished HealWalls at " + sw.ElapsedMilliseconds + "ms in.");
-
-				Console.WriteLine("Finished RunLos at " + sw.ElapsedMilliseconds + "ms in.");
+				//Refs.m.RunLos();
+				//Console.WriteLine("Finished RunLos at " + sw.ElapsedMilliseconds + "ms in.");
 
 				FlowMap.RemakeAllFlows();
 				Console.WriteLine("Finished RemakeAllFlows at " + sw.ElapsedMilliseconds + "ms in.");
 
 				if (timePass == 0)
 				{
-					Refs.main.UpdateMap();
+					Refs.m.RenderMapAll();
 					Console.WriteLine("Finished UpdateMap at " + sw.ElapsedMilliseconds + "ms in.");
 				}
 				else
@@ -56,7 +64,7 @@ namespace Beehive2
 						Console.WriteLine("Finished AiMove at " + sw.ElapsedMilliseconds + "ms in.");
 
 						Refs.m.SpreadNectar();
-						Refs.main.UpdateMap();
+						Refs.m.RenderMapAll();
 						Thread.Sleep(75);
 
 						Console.WriteLine("Finished UpdateMap at " + sw.ElapsedMilliseconds + "ms in.");
@@ -75,9 +83,9 @@ namespace Beehive2
 			Console.WriteLine("Total time this update = " + sw.ElapsedMilliseconds + "ms. or " +
 						1000 / sw.ElapsedMilliseconds + " fps if it mattered.");
 
+			betweenTurnsTimer.Start();
+
 			handled = true;
 		}
-
-	 
 	}
 }

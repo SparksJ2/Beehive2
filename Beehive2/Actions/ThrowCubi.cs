@@ -12,8 +12,8 @@ namespace Beehive2
 			Player p = Refs.p;
 			Cubi cubiThrown = Harem.GetId(p.heldCubiId);
 
-			Refs.mf.Announce("You throw " + cubiThrown.name + " through the air!", myAlign, myColor);
-			Refs.mf.Announce("*flap* *flap* *flap*", cubiThrown.myAlign, cubiThrown.myColor);
+			Announcer.Say("You throw " + cubiThrown.name + " through the air!", myAlign, myColor);
+			Announcer.Say("*flap* *flap* *flap*", cubiThrown.myAlign, cubiThrown.myColor);
 			cubiThrown.beingCarried = false;
 			p.heldCubiId = 0;
 
@@ -27,7 +27,7 @@ namespace Beehive2
 			if (CheckClearForThrown(zero, activeTile) == "pent")
 			{
 				// oops you threw from too close
-				Refs.mf.Announce("*desperate flapping* That was close, just made it over!", cubiThrown.myAlign, cubiThrown.myColor);
+				Announcer.Say("*desperate flapping* That was close, just made it over!", cubiThrown.myAlign, cubiThrown.myColor);
 			}
 
 			// if the next tile is another cubi, throw short
@@ -39,10 +39,10 @@ namespace Beehive2
 				MapTile victimTile = Refs.m.TileByLoc(Loc.AddPts(activeTile.loc, vector));
 				Cubi victim = Refs.m.CubiAt(victimTile.loc);
 
-				Refs.mf.Announce("Owf!", cubiThrown.myAlign, cubiThrown.myColor);
+				Announcer.Say("Owf!", cubiThrown.myAlign, cubiThrown.myColor);
 				victim.Spanked += 5;
 
-				Refs.mf.Announce("Oof too!", cubiThrown.myAlign, cubiThrown.myColor);
+				Announcer.Say("Oof too!", cubiThrown.myAlign, cubiThrown.myColor);
 				cubiThrown.Spanked += 5; // and a good time was had by both
 			}
 			else if (moveClear == "pent")
@@ -76,13 +76,13 @@ namespace Beehive2
 					if (escapes.Count > 0)
 					{
 						victim.loc = MainMap.RandomFromList(escapes).loc;
-						Refs.mf.Announce("Nyahhh missed me!", victim.myAlign, victim.myColor);
+						Announcer.Say("Nyahhh missed me!", victim.myAlign, victim.myColor);
 						moveClear = "clear";
 					}
 					else
 					{
 						victim.Spanked += 5;
-						Refs.mf.Announce("Owwwww!", victim.myAlign, victim.myColor);
+						Announcer.Say("Owwwww!", victim.myAlign, victim.myColor);
 					}
 
 					// if it had a cubi, it could have moved revealing a holding pent
@@ -95,12 +95,12 @@ namespace Beehive2
 					// move one more tile
 					activeTile = Refs.m.TileByLoc(Loc.AddPts(vector, activeTile.loc));
 
-					Refs.mf.Announce("Eep! I'm caught!", cubiThrown.myAlign, cubiThrown.myColor);
+					Announcer.Say("Eep! I'm caught!", cubiThrown.myAlign, cubiThrown.myColor);
 				}
 
 				// just a wall. stop here.
 				if (moveClear == "wall")
-				{ Refs.mf.Announce("You didn't hit anything interesting.", myAlign, myColor); }
+				{ Announcer.Say("You didn't hit anything interesting.", myAlign, myColor); }
 
 				// it's clear, so move activeTile up and iterate
 				if (moveClear == "clear")
@@ -110,7 +110,7 @@ namespace Beehive2
 			// deposit cubi here
 			cubiThrown.loc = activeTile.loc;
 
-			Refs.mf.UpdateMap();
+			Refs.m.RenderMapAll();
 		}
 
 		private void AnimateMobile(MapTile activeTile, Cubi c)

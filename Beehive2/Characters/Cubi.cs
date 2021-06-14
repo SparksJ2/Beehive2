@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
 
-
 namespace Beehive2
 {
 	public delegate void CubiStdAi(int distance, FlowMap f);
@@ -78,10 +77,10 @@ namespace Beehive2
 			doJailBreak = (AnyCubiCaught() && !OnPent() && !beingCarried && DistToPlayer() > 10);
 
 			//if (!oldJB && doJailBreak)
-			//{ Refs.mf.Announce(name + " attempting jailbreak! (debug)", myAlign, myColor); }
+			//{ Announcer.Announce(name + " attempting jailbreak! (debug)", myAlign, myColor); }
 
 			//if (oldJB && !doJailBreak)
-			//{ Refs.mf.Announce(name + " cancelling jailbreak! (debug)", myAlign, myColor); }
+			//{ Announcer.Announce(name + " cancelling jailbreak! (debug)", myAlign, myColor); }
 
 			// spring a fellow cubi free if they're bound next to us
 			// (this is a free action yay)
@@ -90,7 +89,7 @@ namespace Beehive2
 				if (c != this && c.OnPent() && Loc.Distance(loc, c.loc) < 1.5)
 				{
 					c.FreeMoveToNearbySafeSquare();
-					Announcer.Announce(c.name + ", you're free, sweetie! Run!", myAlign, myColor);
+					Announcer.Say(c.name + ", you're free, sweetie! Run!", myAlign, myColor);
 
 					// note they can do this even while being carried... leaving it in for comedy.
 				}
@@ -126,7 +125,7 @@ namespace Beehive2
 				spankNoMove = true; // too oww to move.
 				if (Spanked == 0)
 				{
-					Announcer.Announce("That was intense... but time to get going again!", myAlign, myColor);
+					Announcer.Say("That was intense... but time to get going again!", myAlign, myColor);
 				}
 			}
 
@@ -167,14 +166,14 @@ namespace Beehive2
 				// consume player nectar
 				if (here.nectarLevel[0] > 0) // level [0] for player nectar
 				{
-					Announcer.Announce("Yes, masters nectar! *lap lap*", myAlign, myColor);
+					Announcer.Say("Yes, masters nectar! *lap lap*", myAlign, myColor);
 					horny += here.nectarLevel[0] * 5;
 					here.nectarLevel[0] = 0;
 				}
 
 				if (horny > 15) // having fun
 				{
-					Announcer.Announce("Aieee I'm cumming! *splurt*", myAlign, myColor);
+					Announcer.Say("Aieee I'm cumming! *splurt*", myAlign, myColor);
 					MainMap.SplurtNectar(here, myIdNo);
 					Spanked += 5;
 					horny = 0;
@@ -215,7 +214,7 @@ namespace Beehive2
 					{
 						var knightTiles = myTile.GetPossibleMoves(Dir.KnightMoves);
 						maybeTiles.UnionWith(knightTiles);
-						 
+
 						Console.WriteLine("--" + name + " can jump!");
 						specialEnergy -= 10;
 					}

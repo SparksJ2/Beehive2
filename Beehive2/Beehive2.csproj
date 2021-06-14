@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5091E77C-045D-438E-AB6B-B1C184D085E4}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Beehive2</RootNamespace>
     <AssemblyName>Beehive2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -93,7 +93,6 @@
     <Compile Include="Characters\Player.cs" />
     <Compile Include="Input\MyKeyboardComponent.cs" />
     <Compile Include="Input\MyMouseComponent.cs" />
-    <Compile Include="Old\MapScreen.cs" />
     <Compile Include="Old\OldForm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

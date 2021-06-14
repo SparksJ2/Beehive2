@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
 
+using Microsoft.Xna.Framework;
+using SadConsole;
+using Console = SadConsole.Console;
+using OldConsole = System.Console;
 
 namespace Beehive2
 {
@@ -15,18 +13,14 @@ namespace Beehive2
 		private static string[] nectarChars =
 		{" ","⠂", "⡂", "⡡", "⢕", "⢝", "⣝", "⣟", "⣿" }; // TODO find substitutes
 
-		public Size stdSize = new Size(12, 15);
-		public Size tripSize = new Size(12 * 3, 15 * 3);
-
-		public static void AddForegroundStuff(Image img, MapTile t)
+		public static void AddForegroundStuff(Console con, MapTile t) // Image img
 		{
-			int x1 = (t.loc.X * FrameData.multX) + FrameData.edgeX;
-			int y1 = (t.loc.Y * FrameData.multY) + FrameData.edgeY;
+			// description for rewrite:
+			//  display nectar drops
+			//  display walls
 
-			if (t.clear)  // set flow as background only
+			if (t.clear)  // if tile does not have a 'wall' / pillow on
 			{
-				int showFlow = Refs.p.viewFlow;
-
 				// display nectar drops using deepest level
 				int deepestLevel = 0;
 				int deepestAmt = 0;
@@ -40,46 +34,45 @@ namespace Beehive2
 						deepestLevel = nLoop;
 					}
 				}
+
 				if (deepestAmt > 0)
 				{
-					using (var gNectar = Graphics.FromImage(img))
-					{
-						Color nectarCol;
-						if (deepestLevel == 0) { nectarCol = Refs.p.myColor; }
-						else { nectarCol = Harem.GetId(deepestLevel).myColor; }
+					Color nectarCol;
+					if (deepestLevel == 0) { nectarCol = Refs.p.myColor; }
+					else { nectarCol = Harem.GetId(deepestLevel).myColor; }
 
-						// Color mixedCol = GetColorMix(t);
+					// Color mixedCol = GetColorMix(t);
 
-						if (sumAmt > 8) { sumAmt = 8; }
-						string useNectarChar = nectarChars[sumAmt];
-						//if (sumAmt > 1) { useNectarChar = nectarCharLarge; }
+					if (sumAmt > 8) { sumAmt = 8; }
+					string useNectarChar = nectarChars[sumAmt];
+					//if (sumAmt > 1) { useNectarChar = nectarCharLarge; }
 
-						gNectar.DrawImage(
-							SpriteManager.GetSprite(useNectarChar, Refs.m.stdSize, nectarCol, t.backCol),
-							x1, y1);
-					}
+					//con.Print(t.loc.X, t.loc.Y, useNectarChar, nectarCol, t.backCol);
 				}
-				// todo bigger blob for more nectar maybe?
 			}
+			// todo bigger blob for more nectar maybe?
 			else // it's not marked as clear, so draw the wall
+
 			{
-				Bitmap singleTileImage = SpriteManager.GetSprite(t.gly, Refs.m.stdSize, Color.White, t.backCol);
-				using (var gChar = Graphics.FromImage(img))
+				foreach (byte b in System.Text.Encoding.UTF8.GetBytes(t.gly.ToCharArray()))
 				{
-					gChar.DrawImage(singleTileImage, x1, y1);
+					OldConsole.WriteLine("Rendering Foreground char " + b.ToString() + "...");
 				}
+
+				con.Print(t.loc.X, t.loc.Y, t.gly, Color.White, t.backCol);
 			}
 		}
 
-		public static void AddBackgroundStuff(Image img, MapTile t)
+		public static void AddBackgroundStuff(Console con, MapTile t) // Image img,
 		{
-			int x1 = (t.loc.X * FrameData.multX) + FrameData.edgeX;
-			int y1 = (t.loc.Y * FrameData.multY) + FrameData.edgeY;
+			// description for rewrite:
+			//  if tile is not wall:
+			//   show flows if set and if tile has no wall on
+			//   else show player LOS
 
 			if (t.clear)  // set flow as background only
 			{
 				int showFlow = Refs.p.viewFlow;
-
 				if (showFlow > 0)
 				{
 					Color flowCol = Harem.GetId(showFlow).myColor;
@@ -93,32 +86,13 @@ namespace Beehive2
 					//Color useCol = Color.FromArgb(r, g, b);
 					Color useCol = Color.FromNonPremultiplied(new Vector4(0, r, g, b));
 
-					using (var gFlow = Graphics.FromImage(img))
-					{
-						// Create a rectangle for the working area on the map
-						RectangleF tileRect = new RectangleF(x1, y1, FrameData.multX, FrameData.multY);
-						using (var flowBrush = new SolidBrush(useCol))
-						{
-							gFlow.FillRectangle(flowBrush, tileRect);
-						}
-					}
+					con.SetBackground(t.loc.X, t.loc.Y, useCol);
 				}
 				else // show player los instead
 				{
-					Color losCol = t.backCol;
+					Color losCol = Color.Black;
 					Color hidCol = Color.DarkBlue;
-
-					Color useCol = t.los ? losCol : hidCol;
-
-					using (var gFlow = Graphics.FromImage(img))
-					{
-						// Create a rectangle for the working area on the map
-						RectangleF tileRect = new RectangleF(x1, y1, FrameData.multX, FrameData.multY);
-						using (var flowBrush = new SolidBrush(useCol))
-						{
-							gFlow.FillRectangle(flowBrush, tileRect);
-						}
-					}
+					con.SetBackground(t.loc.X, t.loc.Y, t.los ? losCol : hidCol);
 				}
 			}
 		}
@@ -130,13 +104,16 @@ namespace Beehive2
 			return x;
 		}
 
-		public static void AddCharSpecial(Image img, string s)
+		public static void AddCharSpecial(string s) // Image img
 		{
+			// description for rewrite:
+			//  add specials (currently just pentacages)
+
 			if (s == "⛤") // set up bed
 			{
-				using (var gBed = Graphics.FromImage(img))
+				// rm using (var gBed = Graphics.FromImage(img))
 				{
-					Bitmap bedBitmap = SpriteManager.GetSprite("⛤", Refs.m.tripSize, Color.Purple, Color.Black);
+					// rm Bitmap bedBitmap = SpriteManager.GetSprite("⛤", Refs.m.tripSize, Color.Purple, Color.Black);
 
 					foreach (Loc pen in Refs.m.pents)
 					{
@@ -144,29 +121,31 @@ namespace Beehive2
 						int bedy1 = ((pen.Y - 1) * FrameData.multY) + FrameData.edgeY;
 						int bedx2 = FrameData.multX * 3;
 						int bedy2 = FrameData.multY * 3;
-						RectangleF tileBed = new RectangleF(bedx1, bedy1, bedx2, bedy2);
-						gBed.DrawImage(bedBitmap, bedx1, bedy1);
+						// rm RectangleF tileBed = new RectangleF(bedx1, bedy1, bedx2, bedy2);
+						// rm gBed.DrawImage(bedBitmap, bedx1, bedy1);
 					}
 				}
 			}
 		}
 
-		public static void AddCharMobile(Image img, Mobile m)
+		public static void AddCharMobile(Mobile m)
 		{
+			// description for rewrite:
+			//  add player as '♂' char and cubi as '☿' char
 			string s = m.glyph;
 
 			// begin foreground
 			if ((s == "♂" || s == "☿") && Refs.m.TileByLoc(m.loc).los)
 			{
-				Bitmap singleTileImage = SpriteManager.GetSprite(s, Refs.m.stdSize, m.myColor, Refs.m.TileByLoc(m.loc).backCol);
+				// rm Bitmap singleTileImage = SpriteManager.GetSprite(s, Refs.m.stdSize, m.myColor, Refs.m.TileByLoc(m.loc).backCol);
 
 				// paste symbol onto map
-				using (var gChar = Graphics.FromImage(img))
-				{
-					int x1 = (m.loc.X * FrameData.multX) + FrameData.edgeX;
-					int y1 = (m.loc.Y * FrameData.multY) + FrameData.edgeY;
-					gChar.DrawImage(singleTileImage, x1, y1);
-				}
+				// rm using (var gChar = Graphics.FromImage(img))
+				// rm {
+				// rm int x1 = (m.loc.X * FrameData.multX) + FrameData.edgeX;
+				// rm int y1 = (m.loc.Y * FrameData.multY) + FrameData.edgeY;
+				// rm gChar.DrawImage(singleTileImage, x1, y1);
+				// rm }
 			}
 		}
 	}

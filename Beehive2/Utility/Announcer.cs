@@ -9,7 +9,7 @@ namespace Beehive2
 {
 	internal static class Announcer
 	{
-		public static void Announce(string message, string align, Color myColor)
+		public static void Say(string message, string align, Color myColor)
 		{
 			// TODO announcer
 		}

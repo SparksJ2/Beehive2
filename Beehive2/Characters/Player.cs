@@ -117,7 +117,7 @@ namespace Beehive2
 
 			if (horny > 15) // having fun
 			{
-				Announcer.Announce("Awwww yeah! *splurt*", myAlign, myColor);
+				Announcer.Say("Awwww yeah! *splurt*", myAlign, myColor);
 				timepass += 5;
 				MainMap.SplurtNectar(here, myIndex: 0);
 				horny = 0;
@@ -143,7 +143,7 @@ namespace Beehive2
 				if (jails.Count == Refs.m.pents.Count)
 				{
 					victory = true;
-					Announcer.Announce("Gotcha all! And in only " + turnCounter + " turns!", myAlign, myColor);
+					Announcer.Say("Gotcha all! And in only " + turnCounter + " turns!", myAlign, myColor);
 				}
 			}
 
@@ -152,7 +152,7 @@ namespace Beehive2
 
 		private void FinishMode()
 		{
-			//Refs.mf.Announce("Back to the chase!", myAlign, myColor);
+			//Announcer.Announce("Back to the chase!", myAlign, myColor);
 			placemode = false;
 			throwmode = false;
 		}
@@ -161,27 +161,27 @@ namespace Beehive2
 		{
 			placemode = false;
 			throwmode = false;
-			Announcer.Announce("Never mind! Back to the chase!", myAlign, myColor);
+			Announcer.Say("Never mind! Back to the chase!", myAlign, myColor);
 		}
 
 		private void SetPlaceMode()
 		{
 			placemode = true;
-			Announcer.Announce("Place/pickup where? (esc to cancel)", myAlign, myColor);
+			Announcer.Say("Place/pickup where? (esc to cancel)", myAlign, myColor);
 		}
 
 		private void SetThrowMode()
 		{
 			throwmode = true;
-			Announcer.Announce("Throw which way? (esc to cancel)", myAlign, myColor);
+			Announcer.Say("Throw which way? (esc to cancel)", myAlign, myColor);
 		}
 
 		public void UpdateInventory()
 		{
 			// TODO inventory
 			///Refs.mf.miniInventory.Text =
-				//"pillows: " + heldPillows + "\n" +
-				//"succubi: " + (heldCubiId == 0 ? 0 : 1);
+			//"pillows: " + heldPillows + "\n" +
+			//"succubi: " + (heldCubiId == 0 ? 0 : 1);
 		}
 
 		private void RunNorth()

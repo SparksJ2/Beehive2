@@ -54,7 +54,7 @@
 			{
 				if (HoldingCubi()) PutCubi(t);
 				else if (HoldingPillow()) PutPillow(t);
-				else Announcer.Announce("Nothing to do here.", myAlign, myColor);
+				else Announcer.Say("Nothing to do here.", myAlign, myColor);
 			}
 			else if (PillowHere(t))
 			{
@@ -73,14 +73,14 @@
 		{
 			t.clear = true;
 			heldPillows++;
-			Announcer.Announce("You pick up a pillow. You now have " + heldPillows + ".", myAlign, myColor);
+			Announcer.Say("You pick up a pillow. You now have " + heldPillows + ".", myAlign, myColor);
 		}
 
 		private void PutPillow(MapTile t)
 		{
 			t.clear = false;
 			heldPillows--;
-			Announcer.Announce("You place the pillow to make a wall. You have " + heldPillows + " left.", myAlign, myColor);
+			Announcer.Say("You place the pillow to make a wall. You have " + heldPillows + " left.", myAlign, myColor);
 		}
 
 		private void GrabCubi(MapTile t)
@@ -89,8 +89,8 @@
 			caughtCubi.loc = this.loc;
 			caughtCubi.beingCarried = true;
 			heldCubiId = caughtCubi.myIdNo;
-			Announcer.Announce("Gotcha!", myAlign, myColor);
-			Announcer.Announce("EEEK!!", caughtCubi.myAlign, caughtCubi.myColor);
+			Announcer.Say("Gotcha!", myAlign, myColor);
+			Announcer.Say("EEEK!!", caughtCubi.myAlign, caughtCubi.myColor);
 		}
 
 		private void PutCubi(MapTile t)
@@ -99,7 +99,7 @@
 			myHeldCubi.loc = t.loc;
 			myHeldCubi.beingCarried = false;
 			heldCubiId = 0;
-			Announcer.Announce("You're free to go... if you can.", myAlign, myColor);
+			Announcer.Say("You're free to go... if you can.", myAlign, myColor);
 		}
 
 		private void SwapCubi(MapTile t)
@@ -115,7 +115,7 @@
 			caughtCubi.beingCarried = true;
 			heldCubiId = caughtCubi.myIdNo;
 
-			Announcer.Announce("Hang on, let's grab you instead!", myAlign, myColor);
+			Announcer.Say("Hang on, let's grab you instead!", myAlign, myColor);
 		}
 
 		private bool HoldingPillow() => heldPillows > 0;

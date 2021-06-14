@@ -10,39 +10,37 @@ namespace Beehive2
 	{
 		public void Show()
 		{
+			// test
+			Refs.con.Fill(new Rectangle(3, 3, 23, 3), Color.Violet, Color.Black, 0, 0);
+			Refs.con.Print(4, 4, "Hello from SadConsole");
+
 			// generate map
 			Refs.p = new Player("The Protagonist", Color.Cyan);
 			Refs.p.SetXY(32, 12); // todo fix hardcoded numbers
 
 			Refs.h = new Harem();
-			Refs.m = new MazeGenerator().Create(65, 25);
+			Refs.m = new MazeGenerator().Create(60, 40);
 
 			// draw initial map
 			FlowMap.RemakeAllFlows();
-			UpdateMap();
+			Refs.m.RenderMapAll();
 			GlowTest();
-			HelpPopup();
+			//HelpPopup();
 
 			Player p = Refs.p;
 			Cubi c = Refs.h.roster[0];
-			Announcer.Announce("Welcome to the underworld. Look out, they're getting away!", p.myAlign, p.myColor);
-			Announcer.Announce("You'll never catch meeee!", c.myAlign, c.myColor);
-			Announcer.Announce("We'll see about that!", p.myAlign, p.myColor);
-			Announcer.Announce("Whee! *giggle*", c.myAlign, c.myColor);
+			Announcer.Say("Welcome to the underworld. Look out, they're getting away!", p.myAlign, p.myColor);
+			Announcer.Say("You'll never catch meeee!", c.myAlign, c.myColor);
+			Announcer.Say("We'll see about that!", p.myAlign, p.myColor);
+			Announcer.Say("Whee! *giggle*", c.myAlign, c.myColor);
 
 			c = Refs.h.roster[1];
-			Announcer.Announce("Run, Master! *nyhha!*", c.myAlign, c.myColor);
+			Announcer.Say("Run, Master! *nyhha!*", c.myAlign, c.myColor);
 
 			c = Refs.h.roster[2];
-			Announcer.Announce("Chase me Master! *hehe*", c.myAlign, c.myColor);
+			Announcer.Say("Chase me Master! *hehe*", c.myAlign, c.myColor);
 
 			Refs.p.UpdateInventory();
-		}
-
-		public void UpdateMap()
-		{
-			// TODO Refs.mf.MainBitmap.Image = Refs.m.AsBitmap();
-			// TODO Refs.mf.Refresh();
 		}
 
 		private void HelpPopup()

@@ -34,7 +34,7 @@
 
 			if (p.HoldingCubi()) { ThrowCubiMain(vector); }
 			else if (heldPillows > 0) { ThrowPillowMain(vector); }
-			else { Refs.mf.Announce("You don't have anything to throw.", myAlign, myColor); }
+			else { Announcer.Say("You don't have anything to throw.", myAlign, myColor); }
 		}
 
 		private string CheckClearForThrown(Loc vector, MapTile activeTile)

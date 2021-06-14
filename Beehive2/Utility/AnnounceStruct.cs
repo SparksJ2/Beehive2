@@ -17,6 +17,8 @@ namespace Beehive2
 			say = sayIn;
 			align = alignIn;
 			color = colIn;
+
+			// todo
 		}
 	}
 }

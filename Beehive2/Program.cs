@@ -8,43 +8,49 @@ namespace Beehive2
 {
 	public static class Program
 	{
-		private static void Main(string[] args)
-		{
-			SadConsole.Game.Create(80, 25);
+#pragma warning disable IDE0060 // Remove unused parameter
 
-			// Hook the start event so we can add consoles to the system.
+		private static void Main(string[] args)
+#pragma warning restore IDE0060
+		{
+			SadConsole.Game.Create(70, 50);
+
+			// Hook the events.
 			SadConsole.Game.OnInitialize = Init;
+			//SadConsole.Game.OnDraw = Draw;
+			//SadConsole.Game.OnUpdate = Update;
 
 			// Start the game.
 			SadConsole.Game.Instance.Run();
+
+			// Only happens after game end.
 			SadConsole.Game.Instance.Dispose();
 		}
 
 		private static void Init()
 		{
-			//Global.CurrentScreen = new MapScreen();
+			var console = new Console(70, 50);
+			Refs.con = console;
 
-			var console = new Console(65, 25);
 			console.IsFocused = true;
+			console.Cursor.IsVisible = true;
 			console.Components.Add(new MyKeyboardComponent());
 
-			Global.CurrentScreen.IsFocused = true;
+			console.FillWithRandomGarbage();
+			Global.CurrentScreen = console; // buffer swap here?
 
-			Main m = new Main();
-			Refs.main = m;
+			Refs.main = new Main();
 			Refs.main.Show();
 		}
 
-		private static void Console_MouseMove(object sender, SadConsole.Input.MouseEventArgs e)
-		{
-			var console = (Console)sender;
+		//private static void Draw(GameTime time)
+		//{
+		//	// Called after a frame has been drawn.
+		//}
 
-			console.Print(1, 1, $"Mouse moving at {e.MouseState.CellPosition}          ");
-
-			if (e.MouseState.Mouse.LeftButtonDown)
-				console.Print(1, 2, $"Left button is down");
-			else
-				console.Print(1, 2, $"                   ");
-		}
+		//private static void Update(GameTime time)
+		//{
+		//	// Called after each frame of logic update.
+		//}
 	}
 }

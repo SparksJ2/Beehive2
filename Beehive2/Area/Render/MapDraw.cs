@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-//using System.Drawing.Drawing2D;
-//using System.Drawing.Imaging;
-//using System.Drawing.Text;
-using System.Linq;
-using System.Runtime.InteropServices;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using SadConsole;
+using Console = SadConsole.Console;
 
 namespace Beehive2
 {
@@ -17,44 +10,32 @@ namespace Beehive2
 		///
 		// todo de-duplicate
 
-		public Size stdSize = new Size(12, 15);
-		public Size tripSize = new Size(12 * 3, 15 * 3);
-
-		public Bitmap AsBitmap()
+		public void RenderMapAll() // rm used to return Bitmap
 		{
-			Bitmap bmp = new Bitmap((int)(800), (int)(400));
-			Graphics gr = Graphics.FromImage(bmp);
+			Console newCon = new Console(70, 50);
 
 			// clear the canvas to dark
-			Rectangle pgRect = new Rectangle(0, 0, bmp.Width, bmp.Height);
-			using (var solidBlack = new SolidBrush(Color.DarkSlateBlue))
-			{
-				gr.FillRectangle(solidBlack, pgRect);
-			}
-
-			// frame the image with a black border
-			Rectangle rc = new Rectangle(5, 5, bmp.Width - 10, bmp.Height - 10);
-			using (var whitePen = new Pen(Color.White, 4))
-			{
-				gr.DrawRectangle(whitePen, rc);
-			}
+			newCon.DefaultBackground = Color.Black;
+			newCon.Clear();
 
 			// do all backgrounds here (includes flow, los, glow effects)
 			Refs.m.RunLos();
 			Refs.m.RunGlows();
-			foreach (MapTile t in tiles) { TileDraw.AddBackgroundStuff(bmp, t); }
+			foreach (MapTile t in tiles) { TileDraw.AddBackgroundStuff(newCon, t); }
 
 			// add walls, nectar
-			foreach (MapTile t in tiles) { TileDraw.AddForegroundStuff(bmp, t); }
+			foreach (MapTile t in tiles) { TileDraw.AddForegroundStuff(newCon, t); }
 
 			// add specials
-			TileDraw.AddCharSpecial(bmp, "⛤");
+			// rm TileDraw.AddCharSpecial(bmp, "⛤");
 
-			// add mobiles, player and harem
-			TileDraw.AddCharMobile(bmp, Refs.p);
-			foreach (Cubi c in Refs.h.roster) { TileDraw.AddCharMobile(bmp, c); }
+			// add mobiles (player and harem)
+			// rm TileDraw.AddCharMobile(bmp, Refs.p);
+			foreach (Cubi c in Refs.h.roster) { TileDraw.AddCharMobile(c); }
 
-			return bmp;
+			// flip to new console object
+			Refs.con = newCon;
+			Global.CurrentScreen = Refs.con;
 		}
 
 		// point update for animations
@@ -67,27 +48,26 @@ namespace Beehive2
 		// point update for animations
 		internal void ResetTile(Loc loc)
 		{
-			Image img = Refs.mf.MainBitmap.Image;
-			SetBlank(img, Refs.m.TileByLoc(loc));
-			TileDraw.AddForegroundStuff(img, Refs.m.TileByLoc(loc));
+			// rm Image img = Refs.mf.MainBitmap.Image;
+			// rm SetBlank(img, Refs.m.TileByLoc(loc));
+			// rm TileDraw.AddForegroundStuff(img, Refs.m.TileByLoc(loc));
 		}
 
 		// point update for animations
-		public void SetBlank(Image img, MapTile t)
+		public void SetBlank(MapTile t) // Image img
 		{
-			int x1 = (t.loc.X * FrameData.multX) + FrameData.edgeX;
+			// rm int x1 = (t.loc.X * FrameData.multX) + FrameData.edgeX;
 			int y1 = (t.loc.Y * FrameData.multY) + FrameData.edgeY;
-			Color useCol = Color.DarkSlateBlue;
+			// rm Color useCol = Color.DarkSlateBlue;
 
-			using (var gFlow = Graphics.FromImage(img))
-			{
-				// Create a rectangle for the working area on the map
-				RectangleF tileRect = new RectangleF(x1, y1, FrameData.multX, FrameData.multY);
-				using (var flowBrush = new SolidBrush(useCol))
-				{
-					gFlow.FillRectangle(flowBrush, tileRect);
-				}
-			}
+			// rm using (var gFlow = Graphics.FromImage(img))
+			// rm {
+			// rm // Create a rectangle for the working area on the map
+			// rm RectangleF tileRect = new RectangleF(x1, y1, FrameData.multX, FrameData.multY);
+			// rm using (var flowBrush = new SolidBrush(useCol))
+			// rm {
+			// rm gFlow.FillRectangle(flowBrush, tileRect);
+			// rm }
 		}
 	}
 }

@@ -10,14 +10,14 @@ namespace Beehive2
 	{
 		public static void ClearNectar()
 		{
-			Announcer.Announce("Cheat: clearing nectar...", Refs.p.myAlign, Refs.p.myColor);
+			Announcer.Say("Cheat: clearing nectar...", Refs.p.myAlign, Refs.p.myColor);
 			Refs.m.ClearNectar();
-			Refs.main.UpdateMap();
+			Refs.m.RenderMapAll();
 		}
 
 		public static void TopOffEnergy()
 		{
-			Announcer.Announce("Cheat: topped off cubi jump energy...",
+			Announcer.Say("Cheat: topped off cubi jump energy...",
 				Refs.p.myAlign, Refs.p.myColor);
 			Refs.h.MaxJumpEnergy();
 		}

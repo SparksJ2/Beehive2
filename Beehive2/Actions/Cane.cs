@@ -16,13 +16,13 @@ namespace Beehive2
 			Cubi partner = Harem.GetId(heldCubiId);
 
 			// todo different text on repeat spankings.
-			Refs.mf.Announce("Time for discpline!", myAlign, myColor);
-			Refs.mf.Announce("Yes! I mean no! I mean yes! Owwwww!", partner.myAlign, partner.myColor);
+			Announcer.Say("Time for discpline!", myAlign, myColor);
+			Announcer.Say("Yes! I mean no! I mean yes! Owwwww!", partner.myAlign, partner.myColor);
 
 			partner.Spanked += 15;
 			partner.AddHorny(5);
 
-			Refs.mf.Announce("I think I'll stay put... for now.", partner.myAlign, partner.myColor);
+			Announcer.Say("I think I'll stay put... for now.", partner.myAlign, partner.myColor);
 
 			return 2;
 		}

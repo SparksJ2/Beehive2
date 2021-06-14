@@ -23,8 +23,8 @@ namespace Beehive2
 			int timepass = 0;
 			if (GetHorny() > 15 && partner.GetHorny() > 15) // cumming together
 			{
-				Refs.mf.Announce("Ohhh Yes! Yes! *splurt* (together)", partner.myAlign, partner.myColor);
-				Refs.mf.Announce("Awwww yeah! *splurt* (together)", myAlign, myColor);
+				Announcer.Say("Ohhh Yes! Yes! *splurt* (together)", partner.myAlign, partner.myColor);
+				Announcer.Say("Awwww yeah! *splurt* (together)", myAlign, myColor);
 				timepass = 8;
 
 				MainMap.SplurtNectar(here, partner.myIdNo);
@@ -35,21 +35,21 @@ namespace Beehive2
 			}
 			else if (partner.GetHorny() > 15) // partner only orgasm
 			{
-				Refs.mf.Announce("Ohhh Yes! Yes! *splurt*", partner.myAlign, partner.myColor);
+				Announcer.Say("Ohhh Yes! Yes! *splurt*", partner.myAlign, partner.myColor);
 				timepass = 1;
 				MainMap.SplurtNectar(here, partner.myIdNo);
 				partner.AddHorny(-10);
 			}
 			else if (GetHorny() > 15) // player only orgasm
 			{
-				Refs.mf.Announce("Awwww yeah! *splurt*", myAlign, myColor);
+				Announcer.Say("Awwww yeah! *splurt*", myAlign, myColor);
 				timepass = 5;
 				MainMap.SplurtNectar(here, myIndex: 0);
 				AddHorny(-10);
 			}
 			else // nobody cums (yet)
 			{
-				Refs.mf.Announce("Loud boinking noises...", myAlign, myColor);
+				Announcer.Say("Loud boinking noises...", myAlign, myColor);
 				timepass = 1;
 			}
 
