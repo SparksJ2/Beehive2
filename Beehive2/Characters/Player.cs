@@ -31,75 +31,60 @@ namespace Beehive2
 
 			// for convenience
 			MapTile here = Refs.m.TileByLoc(loc);
+			Loc lastPos = loc;
 
 			// debugging nectar report
 			Console.Write("Nectar here is ");
 			foreach (int i in here.nectarLevel) { Console.Write(i + ", "); }
 			Console.Write(".");
 
-			//if (e.KeyCode == Keys.F && heldCubiId != 0)
-			if (info.IsKeyPressed(Keys.Space) && heldCubiId != 0) return BoinkHeld();
-
-			//if (e.KeyCode == Keys.C && heldCubiId != 0)
+			if (info.IsKeyPressed(Keys.F) && heldCubiId != 0) return BoinkHeld();
 			if (info.IsKeyPressed(Keys.C) && heldCubiId != 0) return CaneHeld();
 
-			Loc lastPos = loc;
-			// visualise flows. hotkeys are just pretend this is where we really do it
-			//if (e.KeyCode == Keys.D0) { viewFlow = 0; return 0; }
+			// keys to trigger visualised flows, UI only action, so quick return
 			if (info.IsKeyPressed(Keys.D0)) { viewFlow = 0; return 0; }
+			if (info.IsKeyPressed(Keys.D1)) { viewFlow = 1; return 0; }
+			if (info.IsKeyPressed(Keys.D2)) { viewFlow = 2; return 0; }
+			if (info.IsKeyPressed(Keys.D3)) { viewFlow = 3; return 0; }
+			if (info.IsKeyPressed(Keys.D4)) { viewFlow = 4; return 0; }
 
-			//if (e.KeyCode == Keys.D1) { viewFlow = 1; return 0; }
-			if (info.IsKeyPressed(Keys.D1)) { viewFlow = 0; return 0; }
+			int timepass = 0; // actions only cause time to pass when set to >0
 
-			//if (e.KeyCode == Keys.D2) { viewFlow = 2; return 0; }
-			if (info.IsKeyPressed(Keys.D2)) { viewFlow = 0; return 0; }
+			if (info.IsKeyPressed(Keys.Space)) { return 1; } // allow waiting at any time
 
-			//if (e.KeyCode == Keys.D3) { viewFlow = 3; return 0; }
-			if (info.IsKeyPressed(Keys.D3)) { viewFlow = 0; return 0; }
-
-			//if (e.KeyCode == Keys.D4) { viewFlow = 4; return 0; }
-			if (info.IsKeyPressed(Keys.D4)) { viewFlow = 0; return 0; }
-
-			int timepass = 1;
-			//if (e.KeyCode == Keys.Space)
-			if (info.IsKeyPressed(Keys.Space))
-			{
-				return 1; // allow waiting at any time
-			}
-
-			//if (placemode || e.Shift)
+			// if we are in placemode, perform a place action in that direction
 			if (placemode || info.IsKeyDown(Keys.LeftShift) || info.IsKeyDown(Keys.RightShift))
 			{
-				// place / pickup is a free action for now
-				if (info.IsKeyPressed(Keys.Down) || info.IsKeyPressed(Keys.S)) { ActionSouth(); FinishMode(); return 0; }
-				if (info.IsKeyPressed(Keys.Right) || info.IsKeyPressed(Keys.D)) { ActionEast(); FinishMode(); return 0; }
-				if (info.IsKeyPressed(Keys.Up) || info.IsKeyPressed(Keys.W)) { ActionEast(); FinishMode(); return 0; }
-				if (info.IsKeyPressed(Keys.Left) || info.IsKeyPressed(Keys.A)) { ActionWest(); FinishMode(); return 0; }
+				// todo place / pickup is a free action... for now
+				if (info.IsKeyPressed(Keys.Down) || info.IsKeyPressed(Keys.S)) { ActionSouth(); FinishMode(); }
+				if (info.IsKeyPressed(Keys.Right) || info.IsKeyPressed(Keys.D)) { ActionEast(); FinishMode(); }
+				if (info.IsKeyPressed(Keys.Up) || info.IsKeyPressed(Keys.W)) { ActionNorth(); FinishMode(); }
+				if (info.IsKeyPressed(Keys.Left) || info.IsKeyPressed(Keys.A)) { ActionWest(); FinishMode(); }
 				if (info.IsKeyPressed(Keys.Escape)) { CancelModes(); return 0; }
 			}
+			// if we are in placemode, perform a throw action in that direction
 			else if (throwmode || info.IsKeyDown(Keys.LeftControl) || info.IsKeyDown(Keys.RightControl))
 			{
-				// throw is a free action for now
-
+				// todo throwing is a free action... for now
 				if (info.IsKeyPressed(Keys.Down) || info.IsKeyPressed(Keys.S)) { ThrowSouth(); FinishMode(); }
 				if (info.IsKeyPressed(Keys.Right) || info.IsKeyPressed(Keys.D)) { ThrowEast(); FinishMode(); }
 				if (info.IsKeyPressed(Keys.Up) || info.IsKeyPressed(Keys.W)) { ThrowEast(); FinishMode(); }
 				if (info.IsKeyPressed(Keys.Left) || info.IsKeyPressed(Keys.A)) { ThrowWest(); FinishMode(); }
 				if (info.IsKeyPressed(Keys.Escape)) { CancelModes(); }
 			}
+			// if we're not in a mode, process directional moves and mode requests
 			else
 			{
 				// directional moves cost 1 turn
-
 				if (info.IsKeyPressed(Keys.Down) || info.IsKeyPressed(Keys.S)) { RunSouth(); FinishMode(); timepass = 1; }
 				if (info.IsKeyPressed(Keys.Right) || info.IsKeyPressed(Keys.D)) { RunEast(); FinishMode(); timepass = 1; }
 				if (info.IsKeyPressed(Keys.Up) || info.IsKeyPressed(Keys.W)) { RunNorth(); FinishMode(); timepass = 1; }
 				if (info.IsKeyPressed(Keys.Left) || info.IsKeyPressed(Keys.A)) { RunWest(); FinishMode(); timepass = 1; }
 
-				// mode changes are free actions
+				// mode requests are free actions
 				if (info.IsKeyPressed(Keys.T)) { SetThrowMode(); }
 				if (info.IsKeyPressed(Keys.P)) { SetPlaceMode(); }
-				if (info.IsKeyPressed(Keys.Escape)) { CancelModes(); }
+				if (info.IsKeyPressed(Keys.Escape)) { CancelModes();  }
 			}
 
 			// save our current location for next turn

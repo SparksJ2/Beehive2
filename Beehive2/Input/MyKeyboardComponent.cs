@@ -42,7 +42,7 @@ namespace Beehive2
 			var sw = new Stopwatch(); sw.Start();
 
 			// TODO only report first key potential for issues here
-			Console.WriteLine("Key " + info.KeysDown[0].Key + " Pressed");
+			Console.WriteLine("*** Key " + info.KeysPressed[0].Key + " Pressed");
 			Console.WriteLine("Starting new frame.");
 
 			try
