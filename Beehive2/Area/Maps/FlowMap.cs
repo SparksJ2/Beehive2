@@ -20,15 +20,14 @@ namespace Beehive2
 			{
 				for (int y = 0; y < yLen; y++)
 				{
-					tiles[x, y] = new FlowTile(new Loc(x, y), this) { flow = 9999 };
+					tiles[x, y] = new FlowTile(new Loc(x, y), this);
 				}
 			}
-			SetToNines(); // todo didn't we just do this above?
+			SetToNines();
 		}
 
 		public static void RemakeAllFlows()
 		{
-			//var sw = new Stopwatch(); sw.Start();
 			if (Refs.m.flows == null)
 			{
 				MainMap m = Refs.m;
@@ -38,7 +37,6 @@ namespace Beehive2
 			{
 				f.RemakeFlow();
 			}
-			//Console.WriteLine("Finished all flows in " + sw.ElapsedMilliseconds + "ms.");
 		}
 
 		internal static void Init(ref FlowMap[] flows, int xLen, int yLen)
@@ -86,13 +84,8 @@ namespace Beehive2
 
 		public void SetToNines()
 		{
-			for (int x = 0; x < xLen; x++)
-			{
-				for (int y = 0; y < yLen; y++)
-				{
-					tiles[x, y].flow = 9999;
-				}
-			}
+			// expensive! :-(
+			foreach (FlowTile t in tiles) { t.flow = 9999; }
 		}
 
 		public void MultFactor(double d) // heh
@@ -134,8 +127,6 @@ namespace Beehive2
 
 		public void RemakeFlow()
 		{
-			//var sw = new Stopwatch(); sw.Start();
-
 			// target tiles get a .flow of 0, tiles 1 square from target
 			//    get a .flow of 1, tiles 2 out get a .flow of 2, etc...
 			// So to navigate to a target tile, just pick a tile with less
@@ -151,13 +142,18 @@ namespace Beehive2
 				Cubi c = Harem.GetId(level);
 
 				if (c.doJailBreak)
-				{ c.myJbAi(c.TeaseDistance, this); }
+				{
+					Console.WriteLine("Cubi " + c.name + " thinking about " +
+						c.myJbAi.Method.ToString() + ".");
+					c.myJbAi(c.TeaseDistance, this);
+				}
 				else
-				{ c.myStdAi(c.TeaseDistance, this); }
+				{
+					Console.WriteLine("Cubi " + c.name + " thinking about " +
+						c.myStdAi.Method.ToString() + ".");
+					c.myStdAi(c.TeaseDistance, this);
+				}
 			}
-
-			// report time
-			//Console.WriteLine("Finished this flow in " + sw.ElapsedMilliseconds + "ms.");
 		}
 
 		public FlowTileSet AllFlowSquares()

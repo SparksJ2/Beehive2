@@ -36,7 +36,7 @@ namespace Beehive2
 			// debugging nectar report
 			Console.Write("Nectar here is ");
 			foreach (int i in here.nectarLevel) { Console.Write(i + ", "); }
-			Console.Write(".");
+			Console.WriteLine(".");
 
 			if (info.IsKeyPressed(Keys.F) && heldCubiId != 0) return BoinkHeld();
 			if (info.IsKeyPressed(Keys.C) && heldCubiId != 0) return CaneHeld();
@@ -84,7 +84,7 @@ namespace Beehive2
 				// mode requests are free actions
 				if (info.IsKeyPressed(Keys.T)) { SetThrowMode(); }
 				if (info.IsKeyPressed(Keys.P)) { SetPlaceMode(); }
-				if (info.IsKeyPressed(Keys.Escape)) { CancelModes();  }
+				if (info.IsKeyPressed(Keys.Escape)) { CancelModes(); }
 			}
 
 			// save our current location for next turn

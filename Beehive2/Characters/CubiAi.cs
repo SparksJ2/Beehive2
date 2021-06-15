@@ -40,20 +40,21 @@ namespace Beehive2
 		public static void FlowOutAndBack(int distance, FlowMap ourFlow)
 		{
 			// ref http://www.roguebasin.com/index.php?title=Dijkstra_Maps_Visualized
-			ourFlow.SetToNines();
+
+			// set player to 0 flow
 			ourFlow.TileByLoc(Refs.p.loc).flow = 0;
 
 			ourFlow.RunFlow(maskWalls: true);
-			ReportHighAndLow(ourFlow, "after first flow");
+			//ReportHighAndLow(ourFlow, "High / low after first flow");
 
 			ourFlow.Reverse();
-			ReportHighAndLow(ourFlow, "after reverse   ");
+			//ReportHighAndLow(ourFlow, "High / lowafter reverse   ");
 
 			ourFlow.MultFactor(1.5);
-			ReportHighAndLow(ourFlow, "after mult      ");
+			//ReportHighAndLow(ourFlow, "High / low after mult      ");
 
 			ourFlow.RunFlow(maskWalls: true);
-			ReportHighAndLow(ourFlow, "after 2nd flow  ");
+			//ReportHighAndLow(ourFlow, "High / low after 2nd flow  ");
 
 			ourFlow.AdjustFactor(-25);
 		}

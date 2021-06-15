@@ -53,9 +53,11 @@ namespace Beehive2
 				betweenTurnsTimer.Start();
 
 				int timePass = Refs.p.HandlePlayerInput(console, info, out handled);
+				Console.WriteLine("Finished Input handling at " + sw.ElapsedMilliseconds + "ms in.");
 
 				Refs.m.HealWalls();
 				Console.WriteLine("Finished HealWalls at " + sw.ElapsedMilliseconds + "ms in.");
+
 				Refs.m.RunLos();
 				Console.WriteLine("Finished RunLos at " + sw.ElapsedMilliseconds + "ms in.");
 
@@ -80,6 +82,10 @@ namespace Beehive2
 						Thread.Sleep(75);
 
 						Console.WriteLine("Finished UpdateMap at " + sw.ElapsedMilliseconds + "ms in.");
+
+						Console.WriteLine("Total time this update = " + sw.ElapsedMilliseconds + "ms. or " +
+							1000 / sw.ElapsedMilliseconds + " fps if it mattered.");
+
 						timePass--;
 						Refs.p.turnCounter++;
 					}
@@ -91,9 +97,6 @@ namespace Beehive2
 					" with message " + ex.Message + " at " + ex.Source +
 					" with trace " + ex.StackTrace);
 			}
-
-			Console.WriteLine("Total time this update = " + sw.ElapsedMilliseconds + "ms. or " +
-						1000 / sw.ElapsedMilliseconds + " fps if it mattered.");
 
 			betweenTurnsTimer.Start();
 
