@@ -1,9 +1,7 @@
 ﻿using System;
-
 using Microsoft.Xna.Framework;
 using SadConsole;
 using Console = SadConsole.Console;
-using OldConsole = System.Console;
 
 namespace Beehive2
 {
@@ -78,8 +76,13 @@ namespace Beehive2
 					int g = ByteLimit(Convert.ToInt32(flowCol.G - flowInt * 4));
 					int b = ByteLimit(Convert.ToInt32(flowCol.B - flowInt * 4));
 
-					//Color useCol = Color.FromArgb(r, g, b);
-					Color useCol = Color.FromNonPremultiplied(new Vector4(0, r, g, b));
+					//Color useCol = Color.FromNonPremultiplied(new Vector4(0, r, g, b));
+					Color useCol = new Color(new Vector4(0, (float)r, (float)g, (float)b));
+
+					useCol.A = 255;
+					useCol.R = (byte)r;
+					useCol.G = (byte)g;
+					useCol.B = (byte)b;
 
 					con.SetBackground(t.loc.X, t.loc.Y, useCol);
 				}
