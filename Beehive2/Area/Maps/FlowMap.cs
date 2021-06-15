@@ -143,17 +143,24 @@ namespace Beehive2
 
 				if (c.doJailBreak)
 				{
-					Console.WriteLine("Cubi " + c.name + " thinking about " +
-						c.myJbAi.Method.ToString() + ".");
+					//Console.WriteLine("Cubi " + c.name + " thinking about " +
+						//c.myJbAi.Method.ToString() + ".");
 					c.myJbAi(c.TeaseDistance, this);
 				}
 				else
 				{
-					Console.WriteLine("Cubi " + c.name + " thinking about " +
-						c.myStdAi.Method.ToString() + ".");
+					//Console.WriteLine("Cubi " + c.name + " thinking about " +
+						//c.myStdAi.Method.ToString() + ".");
 					c.myStdAi(c.TeaseDistance, this);
 				}
 			}
+		}
+
+		public FlowTileSet SeedFlowSquares()
+		{
+			var flowList = new FlowTileSet();
+			foreach (FlowTile fs in tiles) { if (fs.flow == 0) { flowList.Add(fs); } }
+			return flowList;
 		}
 
 		public FlowTileSet AllFlowSquares()
@@ -165,7 +172,7 @@ namespace Beehive2
 
 		public void RunFlow(Boolean maskWalls)
 		{
-			FlowTileSet heads = AllFlowSquares();
+			FlowTileSet heads = SeedFlowSquares();
 
 			if (maskWalls)
 			{
@@ -192,15 +199,15 @@ namespace Beehive2
 				FlowTileSet newHeads = new FlowTileSet();
 
 				// for each active head tile...
-				foreach (FlowTile fs in heads)
+				foreach (FlowTile headTile in heads)
 				{
 					// ...find the tiles next to it...
 					FlowTileSet newTiles = new FlowTileSet()
 					{
-						fs.OneNorth(),
-						fs.OneEast(),
-						fs.OneSouth(),
-						fs.OneWest()
+						headTile.OneNorth(),
+						headTile.OneEast(),
+						headTile.OneSouth(),
+						headTile.OneWest()
 					};
 
 					// ... (ignoring any nulls) ...
@@ -210,14 +217,14 @@ namespace Beehive2
 					foreach (FlowTile newFlowSq in newTiles)
 					{
 						// ... if we can improve the flow rating of it ...
-						double delta = newFlowSq.flow - fs.flow;
+						double delta = newFlowSq.flow - headTile.flow;
 
-						MapTile targetTile = Refs.m.TileByLoc(fs.loc);
-						if (targetTile.clear && delta > 1.0001)
+						MapTile targetTile = Refs.m.TileByLoc(headTile.loc);
+						if (targetTile.clear && delta > 1.01)
 						{
 							// ... do so, and then make it a new head ...
-							newFlowSq.flow = fs.flow + 1;
-							newHeads.Add(newFlowSq);
+							newFlowSq.flow = headTile.flow + 1;
+							newHeads.Add(newFlowSq); // automatically de-duplicates
 							changes = true;
 						}
 					}
@@ -225,8 +232,9 @@ namespace Beehive2
 				}
 				// ... and next time around, we keep going using those new heads
 				heads = newHeads;
+				//Console.WriteLine("//Processed " + headsProcessed + "head tiles.");
 
-				if (failsafe == 255) Console.WriteLine("Hit flow failsafe!");
+				if (failsafe == 254) Console.WriteLine("!!!!!! Hit flow failsafe !!!!!!");
 			}
 		}
 	}

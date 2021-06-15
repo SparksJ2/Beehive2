@@ -9,7 +9,7 @@ namespace Beehive2
 	[Serializable()]
 	public class MapTile : BaseTile<MainMap, MapTile>
 	{
-		public bool clear = false;
+		public bool clear = false; // blocked by pillows or not
 		public string gly = "#";
 		public char asc = (char)168;
 		public bool los = false;
