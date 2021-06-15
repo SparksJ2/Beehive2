@@ -10,16 +10,12 @@ namespace Beehive2
 	{
 		public void Show()
 		{
-			// test
-			Refs.con.Fill(new Rectangle(3, 3, 23, 3), Color.Violet, Color.Black, 0, 0);
-			Refs.con.Print(4, 4, "Hello from SadConsole");
-
 			// generate map
 			Refs.p = new Player("The Protagonist", Color.Cyan);
 			Refs.p.SetXY(32, 12); // todo fix hardcoded numbers
 
 			Refs.h = new Harem();
-			Refs.m = new MazeGenerator().Create(60, 40);
+			Refs.m = new MazeGenerator().Create(Refs.width, Refs.height);
 
 			// draw initial map
 			FlowMap.RemakeAllFlows();

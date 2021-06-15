@@ -11,5 +11,8 @@ namespace Beehive2
 		public static MainMap m;
 		public static Main main;
 		public static Console con;
+
+		public static int width = 80;
+		public static int height = 50;
 	}
 }

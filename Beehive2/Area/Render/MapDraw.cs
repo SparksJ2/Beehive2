@@ -31,7 +31,7 @@ namespace Beehive2
 
 			// add mobiles (player and harem)
 			TileDraw.AddCharMobile(con, Refs.p);
-			foreach (Cubi c in Refs.h.roster) { TileDraw.AddCharMobile(con,c); }
+			foreach (Cubi c in Refs.h.roster) { TileDraw.AddCharMobile(con, c); }
 		}
 
 		// point update for animations

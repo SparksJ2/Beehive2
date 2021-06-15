@@ -13,7 +13,8 @@ namespace Beehive2
 		private static void Main(string[] args)
 #pragma warning restore IDE0060
 		{
-			SadConsole.Game.Create(70, 50);
+			// create the window
+			SadConsole.Game.Create(Refs.width, Refs.height);
 
 			// Hook the events.
 			SadConsole.Game.OnInitialize = Init;
@@ -29,26 +30,27 @@ namespace Beehive2
 
 		private static void Init()
 		{
+			// just one console in this window for now
+			var console = new Console(Refs.width, Refs.height);
+
+			// change font
 			FontMaster fm = Global.LoadFont("fonts/Cheepicus12.font");
-			//FontMaster fm = Global.LoadFont("fonts/mdcurses16.font");
 			Font cheep = fm.GetFont(Font.FontSizes.One);
-
-			var console = new Console(70, 50);
 			console.Font = cheep;
-
 			// fix size after font change
-			cheep.ResizeGraphicsDeviceManager(SadConsole.Global.GraphicsDeviceManager, 70, 50, 5, 5);
+			cheep.ResizeGraphicsDeviceManager(SadConsole.Global.GraphicsDeviceManager, Refs.width, Refs.height, 0, 0);
 			Global.ResetRendering();
 
-			Refs.con = console;
-
+			// console setup
 			console.IsFocused = true;
 			console.Cursor.IsVisible = false;
 			console.Components.Add(new MyKeyboardComponent());
 
-			console.FillWithRandomGarbage();
+			// link to game window
 			Global.CurrentScreen = console; // buffer swap here?
 
+			// go to game logic startup
+			Refs.con = console;
 			Refs.main = new Main();
 			Refs.main.Show();
 		}

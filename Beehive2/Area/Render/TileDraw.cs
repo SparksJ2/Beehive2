@@ -132,8 +132,7 @@ namespace Beehive2
 			// begin foreground
 			if ((s == "♂" || s == "☿")) // && Refs.m.TileByLoc(m.loc).los)
 			{
-
-				if (s == "♂") { con.Print( m.loc.X, m.loc.Y, ((char)11).ToString(), m.myColor); }
+				if (s == "♂") { con.Print(m.loc.X, m.loc.Y, ((char)11).ToString(), m.myColor); }
 				if (s == "☿") { con.Print(m.loc.X, m.loc.Y, ((char)12).ToString(), m.myColor); }
 			}
 		}

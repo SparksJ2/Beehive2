@@ -31,13 +31,13 @@ namespace Beehive2
 
 			if (info.IsKeyPressed(Keys.LeftShift) || info.IsKeyPressed(Keys.RightShift) ||
 				info.IsKeyPressed(Keys.LeftControl) || info.IsKeyPressed(Keys.RightControl))
-				// don't trigger on just modifier keys
+			// don't trigger on just modifier keys
 			{
 				handled = true;
 				return;
 			}
 
-				betweenTurnsTimer = new Stopwatch();
+			betweenTurnsTimer = new Stopwatch();
 
 			var sw = new Stopwatch(); sw.Start();
 
