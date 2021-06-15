@@ -161,7 +161,10 @@ namespace Beehive2
 				}
 
 				// make a move!
+				// todo issue: this can move a cubi onto another cubi which shouldn't happen				
 				AIPathing();
+
+				// todo implment collision check here?
 
 				// consume player nectar
 				if (here.nectarLevel[0] > 0) // level [0] for player nectar
