@@ -38,7 +38,8 @@ namespace Beehive2
 			Font cheep = fm.GetFont(Font.FontSizes.One);
 			console.Font = cheep;
 			// fix size after font change
-			cheep.ResizeGraphicsDeviceManager(SadConsole.Global.GraphicsDeviceManager, Refs.width, Refs.height, 0, 0);
+			cheep.ResizeGraphicsDeviceManager(SadConsole.Global.GraphicsDeviceManager,
+				Refs.width, Refs.height, 0, 0);
 			Global.ResetRendering();
 
 			// console setup
