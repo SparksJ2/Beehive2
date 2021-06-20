@@ -48,6 +48,8 @@ namespace Beehive2
 			if (info.IsKeyPressed(Keys.D3)) { viewFlow = 3; return 0; }
 			if (info.IsKeyPressed(Keys.D4)) { viewFlow = 4; return 0; }
 
+			if (info.IsKeyPressed(Keys.F1)) { Help.ShowHelp(); return 0; }
+
 			int timepass = 0; // actions only cause time to pass when set to >0
 
 			if (info.IsKeyPressed(Keys.Space)) { return 1; } // allow waiting at any time

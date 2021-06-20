@@ -4,14 +4,17 @@ issues:
 'cubi id != their place in the roster, leading to off-by-one problems
 
 Sadconsole v8 todo list:
+`````````````````````````
 
+implement text window
 fix animations
+fix drawing pentagram cages
+implement menus?
+options screen
+check help screen
 
-
-
-
-main todo list:
-`````````````````
+Main todo list:
+````````````````
 
 clear up load/save hotkeys
 

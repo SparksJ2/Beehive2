@@ -100,6 +100,7 @@
     <Compile Include="Utility\ColorExtensions.cs" />
     <Compile Include="Utility\Grimoire.cs" />
     <Compile Include="Utility\HashSetExt.cs" />
+    <Compile Include="Utility\Help.cs" />
     <Compile Include="Utility\LoadAndSave.cs" />
     <Compile Include="Utility\Refs.cs" />
     <Compile Include="Utility\RichTextBoxExtensions.cs" />
@@ -111,6 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENCE.txt" />
+    <Content Include="_Notes\ascii-img.png" />
+    <Content Include="_Notes\ascii.txt" />
     <Content Include="_Notes\cubi.txt" />
     <Content Include="_Notes\references.txt" />
     <Content Include="_Notes\todo.txt" />

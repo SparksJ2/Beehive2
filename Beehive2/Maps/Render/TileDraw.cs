@@ -77,13 +77,10 @@ namespace Beehive2
 					int b = ByteLimit(Convert.ToInt32(flowCol.B - flowInt * 4));
 
 					//Color useCol = Color.FromNonPremultiplied(new Vector4(0, r, g, b));
+
+					// todo not the most elegant code but it'll do for now
 					Color useCol = new Color(new Vector4(0, (float)r, (float)g, (float)b));
-
-					useCol.A = 255;
-					useCol.R = (byte)r;
-					useCol.G = (byte)g;
-					useCol.B = (byte)b;
-
+					useCol.A = 255; useCol.R = (byte)r; useCol.G = (byte)g; useCol.B = (byte)b;
 					con.SetBackground(t.loc.X, t.loc.Y, useCol);
 				}
 				else // show player los instead
