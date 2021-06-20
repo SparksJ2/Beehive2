@@ -9,7 +9,7 @@ namespace Beehive2
 
 		public static Harem h;
 		public static MainMap m;
-		public static Main main;
+		public static Startup main;
 		public static Console con;
 
 		public static int width = 80;

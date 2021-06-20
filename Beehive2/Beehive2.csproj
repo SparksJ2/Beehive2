@@ -59,41 +59,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\Boink.cs" />
-    <Compile Include="Actions\Cane.cs" />
-    <Compile Include="Actions\Place.cs" />
-    <Compile Include="Actions\Throw.cs" />
-    <Compile Include="Actions\ThrowCubi.cs" />
-    <Compile Include="Actions\ThrowPillow.cs" />
-    <Compile Include="Area\Generate\MapGenerator.cs" />
-    <Compile Include="Area\Generate\MapGenUtils.cs" />
-    <Compile Include="Area\Maps\BaseMap.cs" />
-    <Compile Include="Area\Maps\FlowMap.cs" />
-    <Compile Include="Area\Maps\MainMap.cs" />
-    <Compile Include="Area\Maps\MainMapLos.cs" />
-    <Compile Include="Area\Render\ColourUtils.cs" />
-    <Compile Include="Area\Render\FrameData.cs" />
-    <Compile Include="Area\Render\MapDraw.cs" />
-    <Compile Include="Area\Render\TileDraw.cs" />
-    <Compile Include="Area\Tiles\BaseTile.cs" />
-    <Compile Include="Area\Tiles\ConvertTiles.cs" />
-    <Compile Include="Area\Tiles\Dir.cs" />
-    <Compile Include="Area\Tiles\FlowTile.cs" />
-    <Compile Include="Area\Tiles\FlowTileComp.cs" />
-    <Compile Include="Area\Tiles\FlowTileSet.cs" />
-    <Compile Include="Area\Tiles\Loc.cs" />
-    <Compile Include="Area\Tiles\MapTile.cs" />
-    <Compile Include="Area\Tiles\MapTileComp.cs" />
-    <Compile Include="Area\Tiles\MapTileSet.cs" />
-    <Compile Include="Main.cs" />
+    <Compile Include="Characters\Actions\Boink.cs" />
+    <Compile Include="Characters\Actions\Cane.cs" />
+    <Compile Include="Characters\Actions\Place.cs" />
+    <Compile Include="Characters\Actions\Throw.cs" />
+    <Compile Include="Characters\Actions\ThrowCubi.cs" />
+    <Compile Include="Characters\Actions\ThrowPillow.cs" />
+    <Compile Include="Maps\Generate\MapGenerator.cs" />
+    <Compile Include="Maps\Generate\MapGenUtils.cs" />
+    <Compile Include="Maps\BaseMap.cs" />
+    <Compile Include="Maps\FlowMap.cs" />
+    <Compile Include="Maps\MainMap.cs" />
+    <Compile Include="Maps\Render\MainMapLos.cs" />
+    <Compile Include="Utility\ColourUtils.cs" />
+    <Compile Include="Maps\Render\MapDraw.cs" />
+    <Compile Include="Maps\Render\TileDraw.cs" />
+    <Compile Include="Maps\Tiles\BaseTile.cs" />
+    <Compile Include="Maps\Tiles\ConvertTiles.cs" />
+    <Compile Include="Maps\Tiles\Dir.cs" />
+    <Compile Include="Maps\Tiles\FlowTile.cs" />
+    <Compile Include="Maps\Tiles\FlowTileComp.cs" />
+    <Compile Include="Maps\Tiles\FlowTileSet.cs" />
+    <Compile Include="Maps\Tiles\Loc.cs" />
+    <Compile Include="Maps\Tiles\MapTile.cs" />
+    <Compile Include="Maps\Tiles\MapTileComp.cs" />
+    <Compile Include="Maps\Tiles\MapTileSet.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="Characters\Cubi.cs" />
     <Compile Include="Characters\CubiAi.cs" />
     <Compile Include="Characters\Harem.cs" />
     <Compile Include="Characters\Mobile.cs" />
     <Compile Include="Characters\Player.cs" />
-    <Compile Include="Input\MyKeyboardComponent.cs" />
-    <Compile Include="Input\MyMouseComponent.cs" />
-    <Compile Include="Old\OldForm.cs" />
+    <Compile Include="Characters\Input\MyKeyboardComponent.cs" />
+    <Compile Include="Characters\Input\MyMouseComponent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Announcer.cs" />
@@ -113,11 +111,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENCE.txt" />
-    <Content Include="Notes\cubi.txt" />
-    <Content Include="Notes\references.txt" />
-    <Content Include="Notes\todo.txt" />
-    <Content Include="Notes\walls.txt" />
-    <Content Include="Notes\zodiac.txt" />
+    <Content Include="_Notes\cubi.txt" />
+    <Content Include="_Notes\references.txt" />
+    <Content Include="_Notes\todo.txt" />
+    <Content Include="_Notes\walls.txt" />
+    <Content Include="_Notes\zodiac.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

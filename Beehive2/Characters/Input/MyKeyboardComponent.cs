@@ -15,7 +15,9 @@ namespace Beehive2
 
 		public MyKeyboardComponent()
 		{
-			int i = 1; // for checkpoint
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
+			int i = 1; // for checkpoint use only
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
 		}
 
 		public override void ProcessKeyboard(SadConsole.Console console, Keyboard info, out bool handled)

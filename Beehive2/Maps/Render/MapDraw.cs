@@ -53,7 +53,7 @@ namespace Beehive2
 		public void SetBlank(MapTile t) // Image img
 		{
 			// rm int x1 = (t.loc.X * FrameData.multX) + FrameData.edgeX;
-			int y1 = (t.loc.Y * FrameData.multY) + FrameData.edgeY;
+			//int y1 = (t.loc.Y * FrameData.multY) + FrameData.edgeY;
 			// rm Color useCol = Color.DarkSlateBlue;
 
 			// rm using (var gFlow = Graphics.FromImage(img))

@@ -52,7 +52,7 @@ namespace Beehive2
 
 			// go to game logic startup
 			Refs.con = console;
-			Refs.main = new Main();
+			Refs.main = new Startup();
 			Refs.main.Show();
 		}
 

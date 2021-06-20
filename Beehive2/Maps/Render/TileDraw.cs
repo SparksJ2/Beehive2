@@ -52,7 +52,7 @@ namespace Beehive2
 			else // it's not marked as clear, so draw the wall
 
 			{
-				con.Print(t.loc.X, t.loc.Y, t.asc.ToString(), Color.White, Color.DarkBlue);
+				con.Print(t.loc.X, t.loc.Y, t.asc.ToString(), Color.Blue, Color.Black);
 			}
 		}
 
@@ -89,7 +89,7 @@ namespace Beehive2
 				else // show player los instead
 				{
 					Color losCol = Color.Black;
-					Color hidCol = Color.DarkBlue;
+					Color hidCol = new Color(16, 16, 16, 255);
 					con.SetBackground(t.loc.X, t.loc.Y, t.los ? losCol : hidCol);
 				}
 			}
@@ -115,12 +115,7 @@ namespace Beehive2
 
 					foreach (Loc pen in Refs.m.pents)
 					{
-						int bedx1 = ((pen.X - 1) * FrameData.multX) + FrameData.edgeX;
-						int bedy1 = ((pen.Y - 1) * FrameData.multY) + FrameData.edgeY;
-						int bedx2 = FrameData.multX * 3;
-						int bedy2 = FrameData.multY * 3;
-						// rm RectangleF tileBed = new RectangleF(bedx1, bedy1, bedx2, bedy2);
-						// rm gBed.DrawImage(bedBitmap, bedx1, bedy1);
+						// draw pents
 					}
 				}
 			}

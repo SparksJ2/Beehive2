@@ -6,7 +6,7 @@ using Console = SadConsole.Console;
 
 namespace Beehive2
 {
-	public class Main
+	public class Startup
 	{
 		public void Show()
 		{
