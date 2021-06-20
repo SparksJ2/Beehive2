@@ -27,7 +27,7 @@ namespace Beehive2
 			foreach (MapTile t in tiles) { TileDraw.AddForegroundStuff(con, t); }
 
 			// add specials
-			// rm TileDraw.AddCharSpecial(bmp, "⛤");
+			TileDraw.AddCharSpecial();
 
 			// add mobiles (player and harem)
 			TileDraw.AddCharMobile(con, Refs.p);

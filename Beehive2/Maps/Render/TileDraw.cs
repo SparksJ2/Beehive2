@@ -99,22 +99,12 @@ namespace Beehive2
 			return x;
 		}
 
-		public static void AddCharSpecial(string s) // Image img
+		public static void AddCharSpecial() // Image img
 		{
-			// description for rewrite:
 			//  add specials (currently just pentacages)
-
-			if (s == "⛤") // set up bed
+			foreach (Loc pen in Refs.m.pents)
 			{
-				// rm using (var gBed = Graphics.FromImage(img))
-				{
-					// rm Bitmap bedBitmap = SpriteManager.GetSprite("⛤", Refs.m.tripSize, Color.Purple, Color.Black);
-
-					foreach (Loc pen in Refs.m.pents)
-					{
-						// draw pents
-					}
-				}
+				Refs.con.Print(pen.X, pen.Y, ((char)236).ToString(), Color.Purple);
 			}
 		}
 
