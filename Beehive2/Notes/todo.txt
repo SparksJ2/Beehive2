@@ -3,8 +3,15 @@ issues:
 ````````
 'cubi id != their place in the roster, leading to off-by-one problems
 
-todo list:
-```````````
+Sadconsole v8 todo list:
+
+fix animations
+
+
+
+
+main todo list:
+`````````````````
 
 clear up load/save hotkeys
 

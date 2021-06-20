@@ -113,13 +113,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENCE.txt" />
-    <Content Include="Notes\nectar.txt" />
-    <Content Include="Notes\notes.txt" />
-    <Content Include="Notes\personality.txt" />
+    <Content Include="Notes\cubi.txt" />
     <Content Include="Notes\references.txt" />
     <Content Include="Notes\todo.txt" />
     <Content Include="Notes\walls.txt" />
-    <Content Include="Notes\workspace.txt" />
     <Content Include="Notes\zodiac.txt" />
   </ItemGroup>
   <ItemGroup />
