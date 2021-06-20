@@ -85,7 +85,7 @@ namespace Beehive2
 				}
 				else // show player los instead
 				{
-					Color losCol = Color.Black;
+					Color losCol = t.backCol;
 					Color hidCol = new Color(16, 16, 16, 255);
 					con.SetBackground(t.loc.X, t.loc.Y, t.los ? losCol : hidCol);
 				}

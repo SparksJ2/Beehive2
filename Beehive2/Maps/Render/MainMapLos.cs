@@ -40,68 +40,13 @@ namespace Beehive2
 
 		internal void RunGlows()
 		{
-			foreach (MapTile t in tiles) { t.backCol = Color.DarkSlateBlue; }
+			// reset to black
+			foreach (MapTile t in tiles) { t.backCol = Color.Black; }
 
-			foreach (Cubi c in Refs.h.roster) { AddGlow(c.loc, c.myColor); }
-
-			AddGlow(Refs.p.loc, Refs.p.myColor);
-
-			foreach (Loc pen in Refs.m.pents) { AddGlow(pen, Color.Purple); }
-		}
-
-		private static void AddGlow(Loc l, Color glowCol)
-		{
-			// todo what about overlapping glows?
-			MapTileSet done = new MapTileSet();
-
-			MapTile source = Refs.m.TileByLoc(l);
-
-			source.backCol = GlowColOffset(source.backCol, glowCol, 0.5);
-			done.Add(source);
-			Glowinator(glowCol, done, source, 0.25);
-		}
-
-		private static void Glowinator(Color glowCol, MapTileSet done, MapTile from, double amt)
-		{
-			MapTileSet surround = from.GetPossibleMoves(Dir.AllAround);
-
-			while (amt > 0.1)
-			{
-				MapTileSet newSurround = new MapTileSet();
-				foreach (MapTile t in surround)
-				{
-					if (t.clear && !done.Contains(t))
-					{
-						t.backCol = GlowColOffset(t.backCol, glowCol, amt);
-						done.Add(t);
-
-						MapTileSet more = t.GetPossibleMoves(Dir.AllAround);
-						foreach (MapTile m in more) { newSurround.Add(m); }
-					}
-				}
-				surround = newSurround;
-				amt -= 0.1;
-			}
-		}
-
-		public static Color GlowColOffset(Color initial, Color glowCol, double amt)
-		{
-			//additive model
-			int r = Convert.ToInt32(initial.R + (glowCol.R * amt * 0.5));
-			int g = Convert.ToInt32(initial.G + (glowCol.G * amt * 0.5));
-			int b = Convert.ToInt32(initial.B + (glowCol.B * amt * 0.5));
-
-			// mixing model
-			//int r = Convert.ToInt32((initial.R * (1 - amt)) + (glowCol.R * amt));
-			//int g = Convert.ToInt32((initial.G * (1 - amt)) + (glowCol.G * amt));
-			//int b = Convert.ToInt32((initial.B * (1 - amt)) + (glowCol.B * amt));
-
-			if (r > 255) r = 255;
-			if (g > 255) g = 255;
-			if (b > 255) b = 255;
-
-			//return Color.FromArgb(r, g, b);
-			return Color.FromNonPremultiplied(new Vector4(0, r, g, b));
+			// add glows for characters & pens
+			foreach (Cubi c in Refs.h.roster) { Glows.AddGlow(c.loc, c.myColor); }
+			Glows.AddGlow(Refs.p.loc, Refs.p.myColor);
+			foreach (Loc pen in Refs.m.pents) { Glows.AddGlow(pen, Color.Purple); }
 		}
 	}
 }

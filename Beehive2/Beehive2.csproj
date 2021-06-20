@@ -70,6 +70,7 @@
     <Compile Include="Maps\BaseMap.cs" />
     <Compile Include="Maps\FlowMap.cs" />
     <Compile Include="Maps\MainMap.cs" />
+    <Compile Include="Maps\Render\Glows.cs" />
     <Compile Include="Maps\Render\MainMapLos.cs" />
     <Compile Include="Utility\ColourUtils.cs" />
     <Compile Include="Maps\Render\MapDraw.cs" />

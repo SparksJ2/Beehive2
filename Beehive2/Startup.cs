@@ -46,11 +46,11 @@ namespace Beehive2
 			//Color c3 = Color.FromArgb(0, 71, 171);
 			Color c3 = Color.FromNonPremultiplied(new Vector4(0, 0, 71, 171));
 
-			Color m1a = MainMap.GlowColOffset(c1, c2, 0.5);
-			Color m1b = MainMap.GlowColOffset(m1a, c3, 0.5);
+			Color m1a = Glows.GlowColOffset(c1, c2, 0.5);
+			Color m1b = Glows.GlowColOffset(m1a, c3, 0.5);
 
-			Color m2a = MainMap.GlowColOffset(c1, c3, 0.5);
-			Color m2b = MainMap.GlowColOffset(m2a, c2, 0.5);
+			Color m2a = Glows.GlowColOffset(c1, c3, 0.5);
+			Color m2b = Glows.GlowColOffset(m2a, c2, 0.5);
 
 			//MessageBox.Show(m1b + "\n" + m2b);
 		}

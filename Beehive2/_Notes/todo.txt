@@ -7,6 +7,7 @@ Sadconsole v8 todo list:
 `````````````````````````
 
 implement text window
+fix character glows
 fix animations
 fix drawing pentagram cages
 implement menus?
